@@ -12,23 +12,19 @@ import {
   UserOutlined,
 } from "@ant-design/icons";
 
-import {
-  Avatar,
-  Breadcrumb,
-  Card,
-  Input,
-  Layout,
-  Menu,
-  Typography,
-} from "antd";
+// import Home from "./Home";
+// import Users from "./Users";
+
+// import ApprovePendingShop from "./ApprovePendingShop";
+// import FindShop from "./FindShop";
+// import ManageAdmin from "./ManageAdmin";
+import AdminLogs from "./AdminLogs";
+
+import { Avatar, Badge, Breadcrumb, Input, Layout, Menu } from "antd";
 import { React, useState } from "react";
-import BarChartView from "./Chart/BarChartView";
-import LineChartView from "./Chart/LineChartView";
-import PieChartView from "./Chart/PieChartView";
 
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
-let { Title } = Typography;
 
 export default function Layout2() {
   const [collapsed, setCollapsed] = useState(false);
@@ -58,7 +54,9 @@ export default function Layout2() {
             Welcome Asraful Islam
           </h3>
 
-          <Avatar size={50} icon={<UserOutlined />} />
+          <Badge count={3}>
+            <Avatar size={40} icon={<UserOutlined />} />
+          </Badge>
         </div>
       </Header>
       <Content
@@ -95,9 +93,11 @@ export default function Layout2() {
                 height: "100%",
               }}
             >
-              <Menu.Item key="1" icon={<PieChartOutlined />}>
-                DASHBOARD
-              </Menu.Item>
+              <a href="/home">
+                <Menu.Item key="1" icon={<PieChartOutlined />}>
+                  DASHBOARD
+                </Menu.Item>
+              </a>
               <Menu.Item key="2" icon={<UsergroupAddOutlined />}>
                 Users
               </Menu.Item>
@@ -131,55 +131,12 @@ export default function Layout2() {
               minHeight: 280,
             }}
           >
-            <Title>Dashboard</Title>
-            <div style={{ display: "flex", justifyContent: "space-between" }}>
-              <Card
-                title="Number of Total Users"
-                bordered={false}
-                style={{
-                  width: 600,
-                  height: 350,
-                  borderStyle: "groove",
-                  position: "relative",
-                  textAlign: "center",
-                  margin: 5,
-                  borderRadius: 12,
-                }}
-              >
-                <LineChartView />
-              </Card>
-              <Card
-                title="Number of Platform users"
-                bordered={false}
-                style={{
-                  width: 400,
-                  height: 350,
-                  borderStyle: "groove",
-                  position: "relative",
-                  textAlign: "center",
-                  margin: 5,
-                  borderRadius: 12,
-                }}
-              >
-                <PieChartView />
-              </Card>
-            </div>
-            <Card
-              title="Number of Total Shop"
-              bordered={false}
-              style={{
-                width: 800,
-                height: 350,
-                borderStyle: "groove",
-                position: "relative",
-                textAlign: "center",
-                margin: 5,
-                marginTop: 10,
-                borderRadius: 12,
-              }}
-            >
-              <BarChartView />
-            </Card>
+            {/* <Home /> */}
+            {/* <Users /> */}
+            {/* <ApprovePendingShop /> */}
+            {/* <FindShop /> */}
+            {/* <ManageAdmin /> */}
+            <AdminLogs />
           </Content>
         </Layout>
       </Content>

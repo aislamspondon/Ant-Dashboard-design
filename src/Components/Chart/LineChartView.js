@@ -34,7 +34,7 @@ const data = [
 
 export default function LineChartView() {
   return (
-    <ResponsiveContainer width={500} height={240}>
+    <ResponsiveContainer width="95%" height={240}>
       <LineChart data={data}>
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="year" interval={"preserveStartEnd"} />
