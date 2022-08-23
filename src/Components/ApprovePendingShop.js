@@ -462,7 +462,7 @@ export default function ApprovePendingShop() {
           borderRadius: 12,
         }}
       >
-        Shops
+        Pending Shops
       </Title>
       <Table
         dataSource={data}

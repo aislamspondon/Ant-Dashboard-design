@@ -11,14 +11,15 @@ import {
   UsergroupAddOutlined,
   UserOutlined,
 } from "@ant-design/icons";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-// import Home from "./Home";
-// import Users from "./Users";
+import Home from "./Home";
+import Users from "./Users";
 
-// import ApprovePendingShop from "./ApprovePendingShop";
-// import FindShop from "./FindShop";
-// import ManageAdmin from "./ManageAdmin";
 import AdminLogs from "./AdminLogs";
+import ApprovePendingShop from "./ApprovePendingShop";
+import FindShop from "./FindShop";
+import ManageAdmin from "./ManageAdmin";
 
 import { Avatar, Badge, Breadcrumb, Input, Layout, Menu } from "antd";
 import { React, useState } from "react";
@@ -93,20 +94,20 @@ export default function Layout2() {
                 height: "100%",
               }}
             >
-              <a href="/home">
-                <Menu.Item key="1" icon={<PieChartOutlined />}>
-                  DASHBOARD
-                </Menu.Item>
-              </a>
+              <Menu.Item key="1" icon={<PieChartOutlined />}>
+                <a href="/">DASHBOARD</a>
+              </Menu.Item>
+
               <Menu.Item key="2" icon={<UsergroupAddOutlined />}>
-                Users
+                <a href="/users"> Users</a>
               </Menu.Item>
               <SubMenu key="sub1" icon={<ShopOutlined />} title="Shops">
                 <Menu.Item key="3" icon={<AppstoreAddOutlined />}>
-                  Approve Pending Shop
+                  <a href="/pendingshop">Approve Pending Shop</a>
                 </Menu.Item>
+
                 <Menu.Item key="4" icon={<FileSearchOutlined />}>
-                  Find Shop
+                  <a href="/findshop">Find Shop</a>
                 </Menu.Item>
               </SubMenu>
               <Menu.Item key="5" icon={<ProfileOutlined />}>
@@ -114,10 +115,10 @@ export default function Layout2() {
               </Menu.Item>
               <SubMenu key="sub2" icon={<UserOutlined />} title="Admin Panel">
                 <Menu.Item key="6" icon={<AppstoreOutlined />}>
-                  Manage Users
+                  <a href="/manageadmin">Manage Users</a>
                 </Menu.Item>
                 <Menu.Item key="7" icon={<HistoryOutlined />}>
-                  Admin Logs
+                  <a href="/adminlogs">Admin Logs</a>
                 </Menu.Item>
               </SubMenu>
               <Menu.Item key="8" icon={<LogoutOutlined />}>
@@ -131,12 +132,26 @@ export default function Layout2() {
               minHeight: 280,
             }}
           >
+            <Router>
+              <Routes>
+                <Route exact path="/" element={<Home />} />
+                <Route exact path="/users" element={<Users />} />
+                <Route
+                  exact
+                  path="/pendingshop"
+                  element={<ApprovePendingShop />}
+                />
+                <Route exact path="/findshop" element={<FindShop />} />
+                <Route exact path="/manageadmin" element={<ManageAdmin />} />
+                <Route exact path="/adminlogs" element={<AdminLogs />} />
+              </Routes>
+            </Router>
             {/* <Home /> */}
             {/* <Users /> */}
             {/* <ApprovePendingShop /> */}
             {/* <FindShop /> */}
             {/* <ManageAdmin /> */}
-            <AdminLogs />
+            {/* <AdminLogs /> */}
           </Content>
         </Layout>
       </Content>
