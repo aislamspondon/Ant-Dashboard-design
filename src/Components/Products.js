@@ -1,4 +1,8 @@
-import { SearchOutlined } from "@ant-design/icons";
+import {
+  DeleteOutlined,
+  EditOutlined,
+  SearchOutlined,
+} from "@ant-design/icons";
 import { Button, Divider, Image, Input, Table, Typography } from "antd";
 import React, { useState } from "react";
 let { Title } = Typography;
@@ -22,6 +26,17 @@ for (let i = 1; i < 1006; i++) {
     p_category: "desserts",
     update_date: `${i}1/2/2022`,
     status: status_call,
+    edit: (
+      <Button>
+        <EditOutlined />
+      </Button>
+    ),
+    comment: <Button>Comment</Button>,
+    delete: (
+      <Button type="danger">
+        <DeleteOutlined />
+      </Button>
+    ),
   });
 }
 const columns = [
@@ -89,6 +104,21 @@ const columns = [
     onFilter: (value, record) => {
       return record.activity === value;
     },
+  },
+  {
+    title: "",
+    dataIndex: "edit",
+    key: "key",
+  },
+  {
+    title: "",
+    dataIndex: "comment",
+    key: "key",
+  },
+  {
+    title: "",
+    dataIndex: "delete",
+    key: "key",
   },
 ];
 
