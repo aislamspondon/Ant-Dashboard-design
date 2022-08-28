@@ -40,7 +40,12 @@ export default function LineChartView() {
         <XAxis dataKey="year" interval={"preserveStartEnd"} />
         <YAxis />
         <Tooltip />
-        <Line type="monotone" dataKey="total_user" activeDot={{ r: 8 }} />
+        <Line
+          type="monotone"
+          dataKey="total_user"
+          activeDot={{ r: 8 }}
+          strokeWidth={3}
+        />
       </LineChart>
     </ResponsiveContainer>
   );

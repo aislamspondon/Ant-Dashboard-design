@@ -24,30 +24,34 @@ import { Avatar, Badge, Breadcrumb, Input, Layout, Menu } from "antd";
 import { React, useState } from "react";
 
 const { Header, Content, Footer, Sider } = Layout;
-const { SubMenu } = Menu;
-// function getItem(label, key, icon, children, type) {
-//   return {
-//     key,
-//     icon,
-//     children,
-//     label,
-//     type,
-//   };
-// }
-// const items = [
-//   getItem("Dashboard", "sub1", <DashboardOutlined />),
-//   getItem("Users", "sub2", <UsergroupAddOutlined />),
-//   getItem("Shops", "sub3", <ShopOutlined />, [
-//     getItem("Approve Pending Shop", "1", <AppstoreAddOutlined />),
-//     getItem("Find Shop", "2", <FileSearchOutlined />),
-//   ]),
-//   getItem("Products", "sub4", <UsergroupAddOutlined />),
-//   getItem("Admin Panel", "sub5", <UserOutlined />, [
-//     getItem("Manage Users", "3", <AppstoreOutlined />),
-//     getItem("Admin Logs", "4", <HistoryOutlined />),
-//   ]),
-//   getItem("Log-Out", "sub6", <LogoutOutlined />),
-// ];
+// const { SubMenu } = Menu;
+function getItem(label, key, icon, children, type) {
+  return {
+    key,
+    icon,
+    children,
+    label,
+    type,
+  };
+}
+const items = [
+  getItem(<a href="/">DASHBOARD</a>, "sub1", <DashboardOutlined />),
+  getItem(<a href="/users"> Users</a>, "sub2", <UsergroupAddOutlined />),
+  getItem("Shops", "sub3", <ShopOutlined />, [
+    getItem(
+      <a href="/pendingshop">Approve Pending Shop</a>,
+      "1",
+      <AppstoreAddOutlined />
+    ),
+    getItem(<a href="/findshop">Find Shop</a>, "2", <FileSearchOutlined />),
+  ]),
+  getItem(<a href="/products">Products</a>, "sub4", <UsergroupAddOutlined />),
+  getItem("Admin Panel", "sub5", <UserOutlined />, [
+    getItem(<a href="/manageadmin">Manage Users</a>, "3", <AppstoreOutlined />),
+    getItem(<a href="/adminlogs">Admin Logs</a>, "4", <HistoryOutlined />),
+  ]),
+  getItem("Log-Out", "sub6", <LogoutOutlined />),
+];
 
 export default function Layout2() {
   const [collapsed, setCollapsed] = useState(false);
@@ -114,43 +118,13 @@ export default function Layout2() {
             <Menu
               mode="inline"
               onClick={onClick}
-              defaultSelectedKeys={["1"]}
-              defaultOpenKeys={["sub1"]}
+              defaultSelectedKeys={["sub1"]}
+              defaultOpenKeys={["1"]}
               style={{
                 height: "100%",
               }}
-            >
-              <Menu.Item key="1" icon={<DashboardOutlined />}>
-                <a href="/">DASHBOARD</a>
-              </Menu.Item>
-
-              <Menu.Item key="2" icon={<UsergroupAddOutlined />}>
-                <a href="/users"> Users</a>
-              </Menu.Item>
-              <SubMenu key="sub1" icon={<ShopOutlined />} title="Shops">
-                <Menu.Item key="3" icon={<AppstoreAddOutlined />}>
-                  <a href="/pendingshop">Approve Pending Shop</a>
-                </Menu.Item>
-
-                <Menu.Item key="4" icon={<FileSearchOutlined />}>
-                  <a href="/findshop">Find Shop</a>
-                </Menu.Item>
-              </SubMenu>
-              <Menu.Item key="5" icon={<UsergroupAddOutlined />}>
-                <a href="/products">Products</a>
-              </Menu.Item>
-              <SubMenu key="sub2" icon={<UserOutlined />} title="Admin Panel">
-                <Menu.Item key="6" icon={<AppstoreOutlined />}>
-                  <a href="/manageadmin">Manage Users</a>
-                </Menu.Item>
-                <Menu.Item key="7" icon={<HistoryOutlined />}>
-                  <a href="/adminlogs">Admin Logs</a>
-                </Menu.Item>
-              </SubMenu>
-              <Menu.Item key="8" icon={<LogoutOutlined />}>
-                Log-Out
-              </Menu.Item>
-            </Menu>
+              items={items}
+            />
           </Sider>
           <Content
             style={{
