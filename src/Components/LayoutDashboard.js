@@ -20,7 +20,7 @@ import ManageAdmin from "./ManageAdmin";
 import Products from "./Products";
 import Users from "./Users";
 
-import { Avatar, Badge, Breadcrumb, Input, Layout, Menu } from "antd";
+import { Avatar, Badge, Input, Layout, Menu } from "antd";
 import { React, useState } from "react";
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -89,19 +89,7 @@ export default function Layout2() {
           </Badge>
         </div>
       </Header>
-      <Content
-        style={{
-          padding: "0 50px",
-        }}
-      >
-        <Breadcrumb
-          style={{
-            margin: "16px 0",
-          }}
-        >
-          <Breadcrumb.Item>Home</Breadcrumb.Item>
-          <Breadcrumb.Item>Dashboard</Breadcrumb.Item>
-        </Breadcrumb>
+      <Content>
         <Layout
           className="site-layout-background"
           style={{
@@ -118,17 +106,18 @@ export default function Layout2() {
             <Menu
               mode="inline"
               onClick={onClick}
-              defaultSelectedKeys={["sub1"]}
+              // defaultSelectedKeys={["sub1"]}
               defaultOpenKeys={["1"]}
               style={{
                 height: "100%",
+                overflow: "hidden",
               }}
               items={items}
             />
           </Sider>
           <Content
             style={{
-              padding: "0 24px",
+              padding: "20px 24px",
               minHeight: 280,
             }}
           >

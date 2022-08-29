@@ -22,7 +22,7 @@ export default function PieChartView() {
             dataKey="value"
             data={data}
             innerRadius={60}
-            outerRadius={80}
+            outerRadius={85}
             fill="#82ca9d"
             label
           >

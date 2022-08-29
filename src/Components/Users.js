@@ -11,7 +11,7 @@ const data = [
     email: "don458@gmail.com",
     activity: "Active",
     button: (
-      <Button type="danger" shape="round" icon={<StopOutlined />}>
+      <Button type="danger" icon={<StopOutlined />}>
         Suspend/Restrict
       </Button>
     ),
@@ -24,7 +24,7 @@ const data = [
     email: "john458@gmail.com",
     activity: "Active",
     button: (
-      <Button type="danger" shape="round" icon={<StopOutlined />}>
+      <Button type="danger" icon={<StopOutlined />}>
         Suspend/Restrict
       </Button>
     ),
@@ -37,7 +37,7 @@ const data = [
     email: "alom458@gmail.com",
     activity: "Active",
     button: (
-      <Button type="danger" shape="round" icon={<StopOutlined />}>
+      <Button type="danger" icon={<StopOutlined />}>
         Suspend/Restrict
       </Button>
     ),
@@ -50,7 +50,7 @@ const data = [
     email: "alvi458@gmail.com",
     activity: "Inactive",
     button: (
-      <Button type="danger" shape="round" icon={<StopOutlined />}>
+      <Button type="danger" icon={<StopOutlined />}>
         Suspend/Restrict
       </Button>
     ),
@@ -63,7 +63,7 @@ const data = [
     email: "feigh458@gmail.com",
     activity: "Active",
     button: (
-      <Button type="danger" shape="round" icon={<StopOutlined />}>
+      <Button type="danger" icon={<StopOutlined />}>
         Suspend/Restrict
       </Button>
     ),
@@ -76,7 +76,7 @@ const data = [
     email: "aloha458@gmail.com",
     activity: "Inactive",
     button: (
-      <Button type="danger" shape="round" icon={<StopOutlined />}>
+      <Button type="danger" icon={<StopOutlined />}>
         Suspend/Restrict
       </Button>
     ),
@@ -89,7 +89,7 @@ const data = [
     email: "axie458@gmail.com",
     activity: "Active",
     button: (
-      <Button type="danger" shape="round" icon={<StopOutlined />}>
+      <Button type="danger" icon={<StopOutlined />}>
         Suspend/Restrict
       </Button>
     ),
@@ -102,7 +102,7 @@ const data = [
     email: "darcy458@gmail.com",
     activity: "Inactive",
     button: (
-      <Button type="danger" shape="round" icon={<StopOutlined />}>
+      <Button type="danger" icon={<StopOutlined />}>
         Suspend/Restrict
       </Button>
     ),
@@ -115,7 +115,7 @@ const data = [
     email: "eaglan458@gmail.com",
     activity: "Active",
     button: (
-      <Button type="danger" shape="round" icon={<StopOutlined />}>
+      <Button type="danger" icon={<StopOutlined />}>
         Suspend/Restrict
       </Button>
     ),
@@ -128,7 +128,7 @@ const data = [
     email: "flakon458@gmail.com",
     activity: "Inactive",
     button: (
-      <Button type="danger" shape="round" icon={<StopOutlined />}>
+      <Button type="danger" icon={<StopOutlined />}>
         Suspend/Restrict
       </Button>
     ),
@@ -166,8 +166,9 @@ const columns = [
         return (
           <span
             style={{
-              background: "rgba(212, 167, 31, 0.3)",
-              color: "#D4A71F",
+              // background: "rgba(212, 167, 31, 0.3)",
+              color: "#18f75b",
+              fontWeight: "bold",
               padding: 3,
               paddingLeft: 10,
               paddingRight: 10,
@@ -181,7 +182,9 @@ const columns = [
         return (
           <span
             style={{
-              background: "rgba(220, 53, 69, 0.2",
+              // background: "rgba(220, 53, 69, 0.2",
+
+              fontWeight: "bold",
               color: "#DC3545",
               padding: 3,
               paddingLeft: 10,
