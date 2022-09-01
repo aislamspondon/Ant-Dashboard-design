@@ -1,10 +1,10 @@
 import {
   AppstoreAddOutlined,
-  AppstoreOutlined,
   DashboardOutlined,
   FileSearchOutlined,
   HistoryOutlined,
   LogoutOutlined,
+  PicRightOutlined,
   SearchOutlined,
   ShopOutlined,
   UsergroupAddOutlined,
@@ -15,7 +15,7 @@ import {
 // import AdminLogs from "./AdminLogs";
 // import ApprovePendingShop from "./ApprovePendingShop";
 // import FindShop from "./FindShop";
-import Home from "./Home";
+// import Home from "./Home";
 // import ManageAdmin from "./ManageAdmin";
 // import Products from "./Products";
 // import Users from "./Users";
@@ -35,7 +35,7 @@ function getItem(label, key, icon, children, type) {
   };
 }
 const items = [
-  getItem(<a href="/">DASHBOARD</a>, "sub1", <DashboardOutlined />),
+  getItem(<a href="/home">DASHBOARD</a>, "sub1", <DashboardOutlined />),
   getItem(<a href="/users"> Users</a>, "sub2", <UsergroupAddOutlined />),
   getItem("Shops", "sub3", <ShopOutlined />, [
     getItem(
@@ -46,14 +46,12 @@ const items = [
     getItem(<a href="/findshop">Find Shop</a>, "2", <FileSearchOutlined />),
   ]),
   getItem(<a href="/products">Products</a>, "sub4", <UsergroupAddOutlined />),
-  getItem("Admin Panel", "sub5", <UserOutlined />, [
-    getItem(<a href="/manageadmin">Manage Users</a>, "3", <AppstoreOutlined />),
-    getItem(<a href="/adminlogs">Admin Logs</a>, "4", <HistoryOutlined />),
-  ]),
+  getItem(<a href="/matrix">Matrix</a>, "sub4", <PicRightOutlined />),
+  getItem(<a href="/adminlogs">Admin Logs</a>, "sub5", <HistoryOutlined />),
   getItem("Log-Out", "sub6", <LogoutOutlined />),
 ];
 
-export default function Layout2() {
+export default function Layout2({ children }) {
   const [collapsed, setCollapsed] = useState(false);
   const onClick = (e) => {
     console.log("click", e);
@@ -136,7 +134,8 @@ export default function Layout2() {
                 <Route exact path="/adminlogs" element={<AdminLogs />} />
               </Routes>
             </Router> */}
-            <Home />
+            {children}
+            {/* <Home /> */}
             {/* <Users /> */}
             {/* <ApprovePendingShop /> */}
             {/* <FindShop /> */}
