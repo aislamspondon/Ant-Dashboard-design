@@ -10,15 +10,15 @@ import {
   UsergroupAddOutlined,
   UserOutlined,
 } from "@ant-design/icons";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Login from "../LoginTab";
-import AdminLogs from "./AdminLogs";
-import ApprovePendingShop from "./ApprovePendingShop";
-import FindShop from "./FindShop";
+// import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+// import Login from "../LoginTab";
+// import AdminLogs from "./AdminLogs";
+// import ApprovePendingShop from "./ApprovePendingShop";
+// import FindShop from "./FindShop";
 import Home from "./Home";
-import ManageAdmin from "./ManageAdmin";
-import Products from "./Products";
-import Users from "./Users";
+// import ManageAdmin from "./ManageAdmin";
+// import Products from "./Products";
+// import Users from "./Users";
 
 import { Avatar, Badge, Input, Layout, Menu } from "antd";
 import { React, useState } from "react";
@@ -121,9 +121,9 @@ export default function Layout2() {
               minHeight: 280,
             }}
           >
-            <Router>
+            {/* <Router>
               <Routes>
-                <Route exact path="/" element={<Home />} />
+                <Route exact path="/home" element={<Home />} />
                 <Route exact path="/users" element={<Users />} />
                 <Route
                   exact
@@ -134,10 +134,9 @@ export default function Layout2() {
                 <Route exact path="/findshop" element={<FindShop />} />
                 <Route exact path="/manageadmin" element={<ManageAdmin />} />
                 <Route exact path="/adminlogs" element={<AdminLogs />} />
-                <Route exact path="/login" element={<Login />} />
               </Routes>
-            </Router>
-            {/* <Home /> */}
+            </Router> */}
+            <Home />
             {/* <Users /> */}
             {/* <ApprovePendingShop /> */}
             {/* <FindShop /> */}

@@ -1,10 +1,6 @@
 import { Navigate, Outlet } from "react-router-dom";
 
 export default function PrivateRoute() {
-  const currentUser = {
-    username: "admin",
-    password: "admin",
-  };
-
+  const currentUser = 'admin'
   return currentUser ? <Outlet /> : <Navigate to="/login" />;
 }
