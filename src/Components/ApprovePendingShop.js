@@ -1,5 +1,6 @@
 import { Button, Table, Typography } from "antd";
 import { React, useState } from "react";
+import UserDetail from "./ChildPages/UserDetail";
 
 let { Title } = Typography;
 const data = [
@@ -9,6 +10,11 @@ const data = [
     shopId: "05364314752",
     email: "amazon458@gmail.com",
     status: "Pending",
+    details: (
+      <Button>
+        <UserDetail style={{ height: "20px", width: "20px" }} />
+      </Button>
+    ),
     button: (
       <div style={{ display: "flex", justifyContent: "space-evenly" }}>
         <Button type="primary" shape="round" size="Small">
@@ -26,6 +32,11 @@ const data = [
     shopId: "05388304752",
     email: "amazon458@gmail.com",
     status: "Pending",
+    details: (
+      <Button>
+        <UserDetail style={{ height: "20px", width: "20px" }} />
+      </Button>
+    ),
     button: (
       <div style={{ display: "flex", justifyContent: "space-evenly" }}>
         <Button type="primary" shape="round" size="Small">
@@ -43,6 +54,11 @@ const data = [
     shopId: "05364317510",
     email: "amazon458@gmail.com",
     status: "Pending",
+    details: (
+      <Button>
+        <UserDetail style={{ height: "20px", width: "20px" }} />
+      </Button>
+    ),
     button: (
       <div style={{ display: "flex", justifyContent: "space-evenly" }}>
         <Button type="primary" shape="round" size="Small">
@@ -60,6 +76,11 @@ const data = [
     shopId: "05364313302",
     email: "amazon458@gmail.com",
     status: "Pending",
+    details: (
+      <Button>
+        <UserDetail style={{ height: "20px", width: "20px" }} />
+      </Button>
+    ),
     button: (
       <div style={{ display: "flex", justifyContent: "space-evenly" }}>
         <Button type="primary" shape="round" size="Small">
@@ -77,6 +98,11 @@ const data = [
     shopId: "05364311073",
     email: "amazon458@gmail.com",
     status: "Pending",
+    details: (
+      <Button>
+        <UserDetail style={{ height: "20px", width: "20px" }} />
+      </Button>
+    ),
     button: (
       <div style={{ display: "flex", justifyContent: "space-evenly" }}>
         <Button type="primary" shape="round" size="Small">
@@ -94,6 +120,11 @@ const data = [
     shopId: "05364310036",
     email: "amazon458@gmail.com",
     status: "Pending",
+    details: (
+      <Button>
+        <UserDetail style={{ height: "20px", width: "20px" }} />
+      </Button>
+    ),
     button: (
       <div style={{ display: "flex", justifyContent: "space-evenly" }}>
         <Button type="primary" shape="round" size="Small">
@@ -111,6 +142,11 @@ const data = [
     shopId: "05510014752",
     email: "amazon458@gmail.com",
     status: "Pending",
+    details: (
+      <Button>
+        <UserDetail style={{ height: "20px", width: "20px" }} />
+      </Button>
+    ),
     button: (
       <div style={{ display: "flex", justifyContent: "space-evenly" }}>
         <Button type="primary" shape="round" size="Small">
@@ -128,6 +164,11 @@ const data = [
     shopId: "05364310000",
     email: "amazon458@gmail.com",
     status: "Pending",
+    details: (
+      <Button>
+        <UserDetail style={{ height: "20px", width: "20px" }} />
+      </Button>
+    ),
     button: (
       <div style={{ display: "flex", justifyContent: "space-evenly" }}>
         <Button type="primary" shape="round" size="Small">
@@ -145,6 +186,11 @@ const data = [
     shopId: "05336454752",
     email: "amazon458@gmail.com",
     status: "Pending",
+    details: (
+      <Button>
+        <UserDetail style={{ height: "20px", width: "20px" }} />
+      </Button>
+    ),
     button: (
       <div style={{ display: "flex", justifyContent: "space-evenly" }}>
         <Button type="primary" shape="round" size="Small">
@@ -162,6 +208,11 @@ const data = [
     shopId: "07823314752",
     email: "amazon458@gmail.com",
     status: "Pending",
+    details: (
+      <Button>
+        <UserDetail style={{ height: "20px", width: "20px" }} />
+      </Button>
+    ),
     button: (
       <div style={{ display: "flex", justifyContent: "space-evenly" }}>
         <Button type="primary" shape="round" size="Small">
@@ -179,6 +230,11 @@ const data = [
     shopId: "05136437492",
     email: "amazon458@gmail.com",
     status: "Pending",
+    details: (
+      <Button>
+        <UserDetail style={{ height: "20px", width: "20px" }} />
+      </Button>
+    ),
     button: (
       <div style={{ display: "flex", justifyContent: "space-evenly" }}>
         <Button type="primary" shape="round" size="Small">
@@ -196,6 +252,11 @@ const data = [
     shopId: "05364951352",
     email: "amazon458@gmail.com",
     status: "Pending",
+    details: (
+      <Button>
+        <UserDetail style={{ height: "20px", width: "20px" }} />
+      </Button>
+    ),
     button: (
       <div style={{ display: "flex", justifyContent: "space-evenly" }}>
         <Button type="primary" shape="round" size="Small">
@@ -213,6 +274,11 @@ const data = [
     shopId: "05364311032",
     email: "amazon458@gmail.com",
     status: "Pending",
+    details: (
+      <Button>
+        <UserDetail style={{ height: "20px", width: "20px" }} />
+      </Button>
+    ),
     button: (
       <div style={{ display: "flex", justifyContent: "space-evenly" }}>
         <Button type="primary" shape="round" size="Small">
@@ -230,6 +296,11 @@ const data = [
     shopId: "05396574752",
     email: "amazon458@gmail.com",
     status: "Pending",
+    details: (
+      <Button>
+        <UserDetail style={{ height: "20px", width: "20px" }} />
+      </Button>
+    ),
     button: (
       <div style={{ display: "flex", justifyContent: "space-evenly" }}>
         <Button type="primary" shape="round" size="Small">
@@ -247,6 +318,11 @@ const data = [
     shopId: "05363020752",
     email: "amazon458@gmail.com",
     status: "Pending",
+    details: (
+      <Button>
+        <UserDetail style={{ height: "20px", width: "20px" }} />
+      </Button>
+    ),
     button: (
       <div style={{ display: "flex", justifyContent: "space-evenly" }}>
         <Button type="primary" shape="round" size="Small">
@@ -264,6 +340,11 @@ const data = [
     shopId: "05963514752",
     email: "amazon458@gmail.com",
     status: "Pending",
+    details: (
+      <Button>
+        <UserDetail style={{ height: "20px", width: "20px" }} />
+      </Button>
+    ),
     button: (
       <div style={{ display: "flex", justifyContent: "space-evenly" }}>
         <Button type="primary" shape="round" size="Small">
@@ -281,6 +362,11 @@ const data = [
     shopId: "11544314752",
     email: "amazon458@gmail.com",
     status: "Pending",
+    details: (
+      <Button>
+        <UserDetail style={{ height: "20px", width: "20px" }} />
+      </Button>
+    ),
     button: (
       <div style={{ display: "flex", justifyContent: "space-evenly" }}>
         <Button type="primary" shape="round" size="Small">
@@ -298,6 +384,11 @@ const data = [
     shopId: "05364319562",
     email: "amazon458@gmail.com",
     status: "Pending",
+    details: (
+      <Button>
+        <UserDetail style={{ height: "20px", width: "20px" }} />
+      </Button>
+    ),
     button: (
       <div style={{ display: "flex", justifyContent: "space-evenly" }}>
         <Button type="primary" shape="round" size="Small">
@@ -315,6 +406,11 @@ const data = [
     shopId: "05399664752",
     email: "amazon458@gmail.com",
     status: "Pending",
+    details: (
+      <Button>
+        <UserDetail style={{ height: "20px", width: "20px" }} />
+      </Button>
+    ),
     button: (
       <div style={{ display: "flex", justifyContent: "space-evenly" }}>
         <Button type="primary" shape="round" size="Small">
@@ -332,6 +428,11 @@ const data = [
     shopId: "05396514752",
     email: "amazon458@gmail.com",
     status: "Pending",
+    details: (
+      <Button>
+        <UserDetail style={{ height: "20px", width: "20px" }} />
+      </Button>
+    ),
     button: (
       <div style={{ display: "flex", justifyContent: "space-evenly" }}>
         <Button type="primary" shape="round" size="Small">
@@ -349,6 +450,11 @@ const data = [
     shopId: "05364314555",
     email: "amazon458@gmail.com",
     status: "Pending",
+    details: (
+      <Button>
+        <UserDetail style={{ height: "20px", width: "20px" }} />
+      </Button>
+    ),
     button: (
       <div style={{ display: "flex", justifyContent: "space-evenly" }}>
         <Button type="primary" shape="round" size="Small">
@@ -366,6 +472,11 @@ const data = [
     shopId: "05364314784",
     email: "amazon458@gmail.com",
     status: "Pending",
+    details: (
+      <Button>
+        <UserDetail style={{ height: "20px", width: "20px" }} />
+      </Button>
+    ),
     button: (
       <div style={{ display: "flex", justifyContent: "space-evenly" }}>
         <Button type="primary" shape="round" size="Small">
@@ -383,6 +494,11 @@ const data = [
     shopId: "05364314924",
     email: "amazon458@gmail.com",
     status: "Pending",
+    details: (
+      <Button>
+        <UserDetail style={{ height: "20px", width: "20px" }} />
+      </Button>
+    ),
     button: (
       <div style={{ display: "flex", justifyContent: "space-evenly" }}>
         <Button type="primary" shape="round" size="Small">
@@ -400,6 +516,11 @@ const data = [
     shopId: "05364315423",
     email: "amazon458@gmail.com",
     status: "Pending",
+    details: (
+      <Button>
+        <UserDetail style={{ height: "20px", width: "20px" }} />
+      </Button>
+    ),
     button: (
       <div style={{ display: "flex", justifyContent: "space-evenly" }}>
         <Button type="primary" shape="round" size="Small">
@@ -438,6 +559,11 @@ const columns = [
     key: "shopId",
     title: "Status",
     dataIndex: "status",
+  },
+  {
+    key: "shopId",
+    title: "Details",
+    dataIndex: "details",
   },
   {
     key: "shopId",

@@ -190,9 +190,15 @@ export default function Products() {
           allowClear
           value={searchText}
         />
-        <Button type="primary" shape="round" style={{ width: 200, height: 50 }}>
-          Add New
-        </Button>
+        <a href="/addproduct">
+          <Button
+            type="primary"
+            shape="round"
+            style={{ width: 200, height: 50 }}
+          >
+            Add New
+          </Button>
+        </a>
       </div>
 
       <Divider />

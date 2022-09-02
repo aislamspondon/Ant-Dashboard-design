@@ -7,6 +7,7 @@ import Home from "./Components/Home";
 import Matrix from "./Components/Matrix";
 import Login from "./LoginTab";
 // import ManageAdmin from "./Components/ManageAdmin";
+import AddProduct from "./Components/AddProduct";
 import LayoutDashboard from "./Components/LayoutDashboard";
 import Products from "./Components/Products";
 import Users from "./Components/Users";
@@ -59,6 +60,15 @@ export default function LoginRoute() {
             element={
               <LayoutDashboard>
                 <FindShop />
+              </LayoutDashboard>
+            }
+          />
+          <Route
+            exact
+            path="/addproduct"
+            element={
+              <LayoutDashboard>
+                <AddProduct />
               </LayoutDashboard>
             }
           />
