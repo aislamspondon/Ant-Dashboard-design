@@ -47,8 +47,8 @@ const data = [
             src={face2}
           ></Avatar>
           <div className="avatar-info">
-            <Title level={5}>Umar Akram</Title>
-            <p>umar43@gmail.com</p>
+            <Title level={5}>Asif Akbar</Title>
+            <p>asifakbar@gmail.com</p>
           </div>
         </Avatar.Group>{" "}
       </>
@@ -92,8 +92,8 @@ const data = [
             src={face3}
           ></Avatar>
           <div className="avatar-info">
-            <Title level={5}>Alexa Liras</Title>
-            <p>alexa@mail.com</p>
+            <Title level={5}>Anaira Lexix</Title>
+            <p>anaira@mail.com</p>
           </div>
         </Avatar.Group>{" "}
       </>
@@ -137,8 +137,8 @@ const data = [
             src={face}
           ></Avatar>
           <div className="avatar-info">
-            <Title level={5}>Alexa Liras</Title>
-            <p>alexa@mail.com</p>
+            <Title level={5}>Afifa Liras</Title>
+            <p>afifaliras@mail.com</p>
           </div>
         </Avatar.Group>{" "}
       </>
