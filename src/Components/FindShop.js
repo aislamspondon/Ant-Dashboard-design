@@ -1,6 +1,7 @@
 import { SearchOutlined } from "@ant-design/icons";
-import { Input, Table, Typography } from "antd";
+import { Button, Input, Table, Typography } from "antd";
 import { React, useState } from "react";
+import UserDetail from "./ChildPages/UserDetail";
 let { Title } = Typography;
 const data = [
   {
@@ -9,6 +10,11 @@ const data = [
     shopId: "05364314752",
     email: "amazon458@gmail.com",
     mobile: "0000000000",
+    details: (
+      <Button>
+        <UserDetail style={{ height: "20px", width: "20px" }} />
+      </Button>
+    ),
   },
   {
     id: 2,
@@ -16,6 +22,11 @@ const data = [
     shopId: "05388304752",
     email: "amazon458@gmail.com",
     mobile: "0000000000",
+    details: (
+      <Button>
+        <UserDetail style={{ height: "20px", width: "20px" }} />
+      </Button>
+    ),
   },
   {
     id: 3,
@@ -23,6 +34,11 @@ const data = [
     shopId: "05364317510",
     email: "amazon458@gmail.com",
     mobile: "0000000000",
+    details: (
+      <Button>
+        <UserDetail style={{ height: "20px", width: "20px" }} />
+      </Button>
+    ),
   },
   {
     id: 4,
@@ -30,6 +46,11 @@ const data = [
     shopId: "05364313302",
     email: "amazon458@gmail.com",
     mobile: "0000000000",
+    details: (
+      <Button>
+        <UserDetail style={{ height: "20px", width: "20px" }} />
+      </Button>
+    ),
   },
   {
     id: 5,
@@ -37,6 +58,11 @@ const data = [
     shopId: "05364311073",
     email: "amazon458@gmail.com",
     mobile: "0000000000",
+    details: (
+      <Button>
+        <UserDetail style={{ height: "20px", width: "20px" }} />
+      </Button>
+    ),
   },
   {
     id: 6,
@@ -44,6 +70,11 @@ const data = [
     shopId: "05364310036",
     email: "amazon458@gmail.com",
     mobile: "0000000000",
+    details: (
+      <Button>
+        <UserDetail style={{ height: "20px", width: "20px" }} />
+      </Button>
+    ),
   },
   {
     id: 7,
@@ -51,6 +82,11 @@ const data = [
     shopId: "05510014752",
     email: "amazon458@gmail.com",
     mobile: "0000000000",
+    details: (
+      <Button>
+        <UserDetail style={{ height: "20px", width: "20px" }} />
+      </Button>
+    ),
   },
   {
     id: 8,
@@ -58,6 +94,11 @@ const data = [
     shopId: "05364310000",
     email: "amazon458@gmail.com",
     mobile: "0000000000",
+    details: (
+      <Button>
+        <UserDetail style={{ height: "20px", width: "20px" }} />
+      </Button>
+    ),
   },
   {
     id: 9,
@@ -65,6 +106,11 @@ const data = [
     shopId: "05336454752",
     email: "amazon458@gmail.com",
     mobile: "0000000000",
+    details: (
+      <Button>
+        <UserDetail style={{ height: "20px", width: "20px" }} />
+      </Button>
+    ),
   },
   {
     id: 10,
@@ -72,6 +118,11 @@ const data = [
     shopId: "07823314752",
     email: "amazon458@gmail.com",
     mobile: "0000000000",
+    details: (
+      <Button>
+        <UserDetail style={{ height: "20px", width: "20px" }} />
+      </Button>
+    ),
   },
   {
     id: 11,
@@ -79,6 +130,11 @@ const data = [
     shopId: "05136437492",
     email: "amazon458@gmail.com",
     mobile: "0000000000",
+    details: (
+      <Button>
+        <UserDetail style={{ height: "20px", width: "20px" }} />
+      </Button>
+    ),
   },
   {
     id: 12,
@@ -86,6 +142,11 @@ const data = [
     shopId: "05364951352",
     email: "amazon458@gmail.com",
     mobile: "0000000000",
+    details: (
+      <Button>
+        <UserDetail style={{ height: "20px", width: "20px" }} />
+      </Button>
+    ),
   },
   {
     id: 13,
@@ -93,6 +154,11 @@ const data = [
     shopId: "05364311032",
     email: "amazon458@gmail.com",
     mobile: "0000000000",
+    details: (
+      <Button>
+        <UserDetail style={{ height: "20px", width: "20px" }} />
+      </Button>
+    ),
   },
   {
     id: 14,
@@ -100,6 +166,11 @@ const data = [
     shopId: "05396574752",
     email: "amazon458@gmail.com",
     mobile: "0000000000",
+    details: (
+      <Button>
+        <UserDetail style={{ height: "20px", width: "20px" }} />
+      </Button>
+    ),
   },
   {
     id: 15,
@@ -107,6 +178,11 @@ const data = [
     shopId: "05363020752",
     email: "amazon458@gmail.com",
     mobile: "0000000000",
+    details: (
+      <Button>
+        <UserDetail style={{ height: "20px", width: "20px" }} />
+      </Button>
+    ),
   },
   {
     id: 16,
@@ -114,6 +190,11 @@ const data = [
     shopId: "05963514752",
     email: "amazon458@gmail.com",
     mobile: "0000000000",
+    details: (
+      <Button>
+        <UserDetail style={{ height: "20px", width: "20px" }} />
+      </Button>
+    ),
   },
   {
     id: 17,
@@ -121,6 +202,11 @@ const data = [
     shopId: "11544314752",
     email: "amazon458@gmail.com",
     mobile: "0000000000",
+    details: (
+      <Button>
+        <UserDetail style={{ height: "20px", width: "20px" }} />
+      </Button>
+    ),
   },
   {
     id: 18,
@@ -128,6 +214,11 @@ const data = [
     shopId: "05364319562",
     email: "amazon458@gmail.com",
     mobile: "0000000000",
+    details: (
+      <Button>
+        <UserDetail style={{ height: "20px", width: "20px" }} />
+      </Button>
+    ),
   },
   {
     id: 19,
@@ -135,6 +226,11 @@ const data = [
     shopId: "05399664752",
     email: "amazon458@gmail.com",
     mobile: "0000000000",
+    details: (
+      <Button>
+        <UserDetail style={{ height: "20px", width: "20px" }} />
+      </Button>
+    ),
   },
   {
     id: 20,
@@ -142,6 +238,11 @@ const data = [
     shopId: "05396514752",
     email: "amazon458@gmail.com",
     mobile: "0000000000",
+    details: (
+      <Button>
+        <UserDetail style={{ height: "20px", width: "20px" }} />
+      </Button>
+    ),
   },
   {
     id: 21,
@@ -149,6 +250,11 @@ const data = [
     shopId: "05364314555",
     email: "amazon458@gmail.com",
     mobile: "0000000000",
+    details: (
+      <Button>
+        <UserDetail style={{ height: "20px", width: "20px" }} />
+      </Button>
+    ),
   },
   {
     id: 22,
@@ -156,6 +262,11 @@ const data = [
     shopId: "05364314784",
     email: "amazon458@gmail.com",
     mobile: "0000000000",
+    details: (
+      <Button>
+        <UserDetail style={{ height: "20px", width: "20px" }} />
+      </Button>
+    ),
   },
   {
     id: 23,
@@ -163,6 +274,11 @@ const data = [
     shopId: "05364314924",
     email: "amazon458@gmail.com",
     mobile: "0000000000",
+    details: (
+      <Button>
+        <UserDetail style={{ height: "20px", width: "20px" }} />
+      </Button>
+    ),
   },
   {
     id: 24,
@@ -170,6 +286,11 @@ const data = [
     shopId: "05364315423",
     email: "amazon458@gmail.com",
     mobile: "0000000000",
+    details: (
+      <Button>
+        <UserDetail style={{ height: "20px", width: "20px" }} />
+      </Button>
+    ),
   },
 ];
 
@@ -197,6 +318,11 @@ const columns = [
   {
     title: "PHONE",
     dataIndex: "mobile",
+    key: "key",
+  },
+  {
+    title: "Details",
+    dataIndex: "details",
     key: "key",
   },
 ];

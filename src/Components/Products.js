@@ -1,10 +1,16 @@
+import { DeleteOutlined, SearchOutlined } from "@ant-design/icons";
 import {
-  DeleteOutlined,
-  EditOutlined,
-  SearchOutlined,
-} from "@ant-design/icons";
-import { Button, Divider, Image, Input, Table, Typography } from "antd";
+  Button,
+  Divider,
+  Image,
+  Input,
+  Popover,
+  Table,
+  Typography,
+} from "antd";
 import React, { useState } from "react";
+import Comment from "./ChildPages/Comment";
+import EditProduct from "./ChildPages/EditProduct";
 let { Title } = Typography;
 let img_use = "";
 const data = [];
@@ -27,11 +33,13 @@ for (let i = 1; i < 1006; i++) {
     update_date: `${i}1/2/2022`,
     status: status_call,
     edit: (
-      <Button>
-        <EditOutlined />
-      </Button>
+      <Popover placement="bottom" trigger="click">
+        <Button>
+          <EditProduct />
+        </Button>
+      </Popover>
     ),
-    comment: <Button>Comment</Button>,
+    comment: <Comment />,
     delete: (
       <Button type="danger">
         <DeleteOutlined />
