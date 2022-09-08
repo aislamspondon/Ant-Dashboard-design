@@ -1,7 +1,8 @@
 import { StopOutlined } from "@ant-design/icons";
 import { Button, Table, Typography } from "antd";
-import { React, useState } from "react";
-
+import axios from "axios";
+import { React, useEffect, useState } from "react";
+import TableData from "./TableData/TableData";
 let { Title } = Typography;
 const data = [
   {
@@ -140,71 +141,76 @@ const columns = [
   {
     title: "NO",
     dataIndex: "id",
-    key: "key",
+    key: "id",
   },
   {
-    title: "NAME",
-    dataIndex: "name",
-    key: "key",
+    title: "Name",
+    dataIndex: "displayName",
+    key: "displayName",
   },
   {
     title: "USERNAME",
     dataIndex: "username",
-    key: "key",
+    key: "username",
+  },
+  {
+    title: "PHONE",
+    dataIndex: "phoneNumber",
+    key: "phoneNumber",
   },
   {
     title: "EMAIL",
     dataIndex: "email",
-    key: "key",
+    key: "email",
   },
-  {
-    title: "Status",
-    dataIndex: "activity",
-    key: "key",
-    render: (activity) => {
-      if (activity === "Active") {
-        return (
-          <span
-            style={{
-              // background: "rgba(212, 167, 31, 0.3)",
-              color: "#18f75b",
-              fontWeight: "bold",
-              padding: 3,
-              paddingLeft: 10,
-              paddingRight: 10,
-              borderRadius: 12,
-            }}
-          >
-            {activity}
-          </span>
-        );
-      } else {
-        return (
-          <span
-            style={{
-              // background: "rgba(220, 53, 69, 0.2",
+  // {
+  //   title: "Status",
+  //   dataIndex: "activity",
+  //   key: "key",
+  //   render: (activity) => {
+  //     if (activity === "Active") {
+  //       return (
+  //         <span
+  //           style={{
+  //             // background: "rgba(212, 167, 31, 0.3)",
+  //             color: "#18f75b",
+  //             fontWeight: "bold",
+  //             padding: 3,
+  //             paddingLeft: 10,
+  //             paddingRight: 10,
+  //             borderRadius: 12,
+  //           }}
+  //         >
+  //           {activity}
+  //         </span>
+  //       );
+  //     } else {
+  //       return (
+  //         <span
+  //           style={{
+  //             // background: "rgba(220, 53, 69, 0.2",
 
-              fontWeight: "bold",
-              color: "#DC3545",
-              padding: 3,
-              paddingLeft: 10,
-              paddingRight: 10,
-              borderRadius: 12,
-            }}
-          >
-            {activity}
-          </span>
-        );
-      }
-    },
-    filters: [
-      { text: "Active", value: "Active" },
-      { text: "Inactive", value: "Inactive" },
-    ],
-    onFilter: (value, record) => {
-      return record.activity === value;
-    },
-  },
+  //             fontWeight: "bold",
+  //             color: "#DC3545",
+  //             padding: 3,
+  //             paddingLeft: 10,
+  //             paddingRight: 10,
+  //             borderRadius: 12,
+  //           }}
+  //         >
+  //           {activity}
+  //         </span>
+  //       );
+  //     }
+  //   },
+  //   filters: [
+  //     { text: "Active", value: "Active" },
+  //     { text: "Inactive", value: "Inactive" },
+  //   ],
+  //   onFilter: (value, record) => {
+  //     return record.activity === value;
+  //   },
+  // },
   {
     title: "ACTION",
     dataIndex: "button",
@@ -215,6 +221,35 @@ const columns = [
 export default function Users() {
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
+  const dataArray = [];
+
+  const getUsers = async () => {
+    if (typeof windows !== undefined) {
+      dataArray.splice(0, dataArray.length);
+      if (dataArray) {
+        const users = await axios.get("https://merchport.z1p.xyz/api/_users");
+        //console.log(users.data);
+        const allusers = users.data.result;
+        allusers.forEach((user) => {
+          const dataObject = {};
+          
+          dataObject["id"] = user.id;
+          dataObject["displayName"] = user.profile.displayName;
+          dataObject["username"] = user.account.username;
+          dataObject["email"] = user.account.email;
+          dataObject["phoneNumber"] = user.account.phoneNumber;
+          // setDataArray(dataObject)
+          dataArray.push(dataObject);
+        });
+      }
+      console.log(dataArray);
+      return dataArray;
+    }
+  };
+
+  useEffect(() => {
+    getUsers();
+  }, []);
   return (
     <>
       <Title
@@ -230,6 +265,7 @@ export default function Users() {
       >
         Users
       </Title>
+        <TableData data={dataArray} column={columns}/>
       <Table
         dataSource={data}
         columns={columns}

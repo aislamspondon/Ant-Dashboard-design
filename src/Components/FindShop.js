@@ -1,7 +1,9 @@
 import { SearchOutlined } from "@ant-design/icons";
 import { Button, Input, Table, Typography } from "antd";
-import { React, useState } from "react";
+import axios from "axios";
+import { React, useEffect, useState } from "react";
 import UserDetail from "./ChildPages/UserDetail";
+import TableData from "./TableData/TableData";
 let { Title } = Typography;
 const data = [
   {
@@ -326,13 +328,88 @@ const columns = [
     key: "key",
   },
 ];
+
+
 export default function FindShop() {
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
   const [searchText, setSearchText] = useState("");
+  const [shops, setShops] = useState();
   const handleChange = (e) => {
     setSearchText(e.target.value);
   };
+
+  const columsNew = [
+    {
+        title: 'logo',
+        dataIndex: "location",
+        key: 'location',
+    },
+    {
+      title: 'Name',
+      dataIndex: 'name',
+      key: 'name',
+    },
+    {
+        title: 'Shop ID',
+        dataIndex: 'id',
+        key: 'id',
+    },
+    {
+      title: 'Description',
+      dataIndex: 'description',
+      key: 'description'
+    },
+    ,{
+      title: 'Foundation date',
+      dataIndex: 'foundDate',
+      key: 'foundDate'
+    }
+  ]
+
+  const getShops = async () => {
+    if (typeof window !== undefined) {
+      const shops = await axios.get('https://merchport.z1p.xyz/api/shops');
+      console.log(JSON.stringify(shops.data));
+      setShops(shops.data.result);
+      
+    } 
+  };
+  useEffect(() => {
+    getShops();
+  }, []);
+
+  
+  
+  
+  /*{
+      "id": "3a400526-3698-4566-9cae-c28d8e05fa63",
+      "createdAt": "2022-09-06T14:53:10.414Z",
+      "updatedAt": "2022-09-06T14:53:10.415Z",
+      "name": "sadas",
+      "foundDate": "2022-09-06T14:51:49.840Z",
+      "description": "asdasdasd",
+      "ownerUserId": "8c971653-c067-45e4-927e-e24655bf7620",
+      "iconFileId": "1965c0de-d47e-4d94-a957-7bbf0a6eade5",
+      "contactMethods": "[{\"key\":\"Signal\",\"value\":\"asdsa\"}]",
+      "verified": false,
+      "warranty": "asdasdas",
+      "icon": {
+        "id": "1965c0de-d47e-4d94-a957-7bbf0a6eade5",
+        "location": "https://merchport-bucket.s3.ap-southeast-1.amazonaws.com/76651d3248b2f43e0559b208fae763bd"
+      },
+      "productPhotos": [],
+      "_count": {
+        "productPhotos": 0,
+        "categories": 2,
+        "products": 0,
+        "views": 0,
+        "comments": 0,
+        "bookmarks": 0,
+        "followers": 0
+      }
+    }, */
+
   return (
     <>
       <Title
@@ -362,6 +439,7 @@ export default function FindShop() {
         allowClear
         value={searchText}
       />
+
       <Table
         dataSource={data.filter((val) => {
           if (searchText === "") {
@@ -382,6 +460,7 @@ export default function FindShop() {
           },
         }}
       ></Table>
+      <TableData data={shops} column={columsNew} />
     </>
   );
 }

@@ -1,13 +1,27 @@
 import { Button, Checkbox, Form, Input, Typography } from "antd";
+import axios from "axios";
 import React from "react";
-// import LayoutDashboard from "./Components/LayoutDashboard";
+import LayoutDashboard from "./Components/LayoutDashboard";
 let { Title } = Typography;
 
 export default function LoginTab() {
   // const username = "admin";
   // const password = "admin";
-  const onFinish = (values) => {
-    // <LayoutDashboard />;
+  const onFinish = async(values) => {
+    console.log(values)
+    const config = {
+      method: "POST",
+      body: values
+    };
+
+    const login = await axios.post('https://merchport.z1p.xyz/api/auth/login',values);
+    console.log(login);
+    if(login.status !== 401){
+      <LayoutDashboard />;
+    }
+    else {
+      onFinishFailed(login);
+    }
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -54,7 +68,7 @@ export default function LoginTab() {
         >
           <Form.Item
             label="Username"
-            name="username"
+            name="login"
             rules={[
               {
                 required: true,

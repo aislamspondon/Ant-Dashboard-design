@@ -1,7 +1,7 @@
 import { FastBackwardOutlined, InboxOutlined } from "@ant-design/icons";
 import { Button, Form, Input, InputNumber, Upload } from "antd";
-
-import React from "react";
+import axios from "axios";
+import React, { useState } from "react";
 const layout = {
   labelCol: {
     span: 8,
@@ -11,15 +11,15 @@ const layout = {
   },
 };
 
-const normFile = (e) => {
-  console.log("Upload event:", e);
+// const normFile = (e) => {
+//   console.log("Upload event:", e);
 
-  if (Array.isArray(e)) {
-    return e;
-  }
+//   if (Array.isArray(e)) {
+//     return e;
+//   }
 
-  return e?.fileList;
-};
+//   return e?.fileList;
+// };
 /* eslint-disable no-template-curly-in-string */
 
 const validateMessages = {
@@ -35,8 +35,28 @@ const validateMessages = {
 /* eslint-enable no-template-curly-in-string */
 
 const AddProduct = () => {
-  const onFinish = (values) => {
+  const [fileHist, setFileHist] = useState(null);
+
+
+  const onFinish = async(values) => {
     console.log(values);
+
+    values.images = fileHist;
+   
+    console.log(values);
+    const config = {
+      method: "POST",
+      body: values,
+    };
+
+    const ProductsPush = await axios.post(`https://merchport.z1p.xyz/api/products`, config)
+    console.log(ProductsPush);
+  };
+
+  const normFile = (e) => {
+    
+    setFileHist(e.fileList);
+    console.log(fileHist);
   };
 
   return (
@@ -62,6 +82,7 @@ const AddProduct = () => {
         >
           <Form.Item
             label="Product Name"
+            name={"name"}
             rules={[
               {
                 required: true,
@@ -71,7 +92,7 @@ const AddProduct = () => {
             <Input placeholder="Enter Your Product Name..." />
           </Form.Item>
           <Form.Item
-            name={["user", "Category"]}
+            name={"categories"}
             label="Category"
             rules={[
               {
@@ -82,7 +103,7 @@ const AddProduct = () => {
             <Input placeholder="Enter Your Category..." />
           </Form.Item>
           <Form.Item
-            name={["user", "Price"]}
+            name={"price"}
             label="Price"
             rules={[
               {
@@ -95,17 +116,17 @@ const AddProduct = () => {
             <InputNumber placeholder="Price" />
           </Form.Item>
 
-          <Form.Item name={["user", "Description"]} label="Description">
+          <Form.Item name={"description"} label="Description">
             <Input.TextArea placeholder="Enter Product Description" />
           </Form.Item>
           <Form.Item label="Dragger">
             <Form.Item
-              name="dragger"
+              name="images"
               valuePropName="fileList"
               getValueFromEvent={normFile}
               noStyle
             >
-              <Upload.Dragger name="files" action="/upload.do">
+              <Upload.Dragger name="files">
                 <p className="ant-upload-drag-icon">
                   <InboxOutlined />
                 </p>
