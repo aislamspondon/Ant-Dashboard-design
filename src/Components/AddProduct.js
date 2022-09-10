@@ -39,24 +39,26 @@ const AddProduct = () => {
 
 
   const onFinish = async(values) => {
-    console.log(values);
-
     values.images = fileHist;
-   
+    const category = values.categories;
+    values.categories = [category];
+    const refresh_token = localStorage.getItem("refresh_token");
+    console.log(refresh_token);
     console.log(values);
-    const config = {
-      method: "POST",
-      body: values,
-    };
-
-    const ProductsPush = await axios.post(`https://merchport.z1p.xyz/api/products`, config)
+    const ProductsPush = await axios.post(`https://merchport.z1p.xyz/api/products`, values, {
+      headers: { 'Bearer': `${refresh_token}`
+    }
+  })
     console.log(ProductsPush);
   };
 
   const normFile = (e) => {
-    
+    const images = [];
+    e.fileHist.forEach(each => {
+      images.push(each.uid);
+    });
     setFileHist(e.fileList);
-    console.log(fileHist);
+    console.log(fileHist.uid);
   };
 
   return (
