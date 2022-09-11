@@ -1,132 +1,42 @@
 import { DeleteOutlined, SearchOutlined } from "@ant-design/icons";
-import {
-  Button,
-  Divider,
-  Image,
-  Input,
-  Popover,
-  Table,
-  Typography,
-} from "antd";
-import React, { useState } from "react";
-import Comment from "./ChildPages/Comment";
+import { Button, Divider, Input, Popover, Typography } from "antd";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import EditProduct from "./ChildPages/EditProduct";
+import TableData from "./TableData/TableData";
+
 let { Title } = Typography;
-let img_use = "";
-const data = [];
-let status_call = "PROCESSED";
-for (let i = 1; i < 1006; i++) {
-  if (i % 2 === 0) {
-    status_call = "ON HOLD";
-    img_use =
-      "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/dessert-main-image-molten-cake-0fbd4f2.jpg";
-  } else {
-    status_call = "PROCESSED";
-    img_use =
-      "https://www.mashed.com/img/gallery/insanely-delicious-desserts-you-need-to-try-before-you-die/intro-1605294330.jpg";
-  }
-  data.push({
-    key: i,
-    img: <Image width={120} height={85} src={img_use} />,
-    p_name: `Chocolate ${i}`,
-    p_category: "desserts",
-    update_date: `${i}1/2/2022`,
-    status: status_call,
-    edit: (
-      <Popover placement="bottom" trigger="click">
-        <Button>
-          <EditProduct />
-        </Button>
-      </Popover>
-    ),
-    comment: <Comment />,
-    delete: (
-      <Button type="danger">
-        <DeleteOutlined />
-      </Button>
-    ),
-  });
-}
+
 const columns = [
   {
-    title: "",
-    dataIndex: "img",
-    key: "key",
+    title: "Name",
+    dataIndex: "name",
+    key: "name",
   },
   {
-    title: "",
-    dataIndex: "p_name",
-    key: "key",
+    title: "Description",
+    dataIndex: "description",
+    key: "description",
   },
   {
-    title: "",
-    dataIndex: "p_category",
-    key: "key",
+    title: "Price",
+    dataIndex: "price",
+    key: "price",
   },
   {
-    title: "",
-    dataIndex: "update_date",
-    key: "key",
+    title: "Created At",
+    dataIndex: "createdAt",
+    key: "createdAt",
   },
   {
-    title: "",
-    dataIndex: "status",
-    key: "key",
-    render: (record) => {
-      if (record === "PROCESSED") {
-        return (
-          <span
-            style={{
-              background: "#4556AC",
-              color: "#fff",
-              padding: 3,
-              paddingLeft: 10,
-              paddingRight: 10,
-              borderRadius: 12,
-            }}
-          >
-            {record}
-          </span>
-        );
-      } else {
-        return (
-          <span
-            style={{
-              background: "#922C88",
-              color: "#fff",
-              padding: 3,
-              paddingLeft: 10,
-              paddingRight: 10,
-              borderRadius: 12,
-            }}
-          >
-            {record}
-          </span>
-        );
-      }
-    },
-    filters: [
-      { text: "PROCESSED", value: "PROCESSED" },
-      { text: "ON HOLD", value: "ON HOLD" },
-    ],
-    onFilter: (value, record) => {
-      return record.activity === value;
-    },
-  },
-  {
-    title: "",
+    title: "Edit",
     dataIndex: "edit",
-    key: "key",
+    key: "edit",
   },
   {
-    title: "",
-    dataIndex: "comment",
-    key: "key",
-  },
-  {
-    title: "",
+    title: "Delete",
     dataIndex: "delete",
-    key: "key",
+    key: "delete",
   },
 ];
 
@@ -136,9 +46,41 @@ export default function Products() {
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
   const [searchText, setSearchText] = useState("");
+  const [product, setProduct] = useState();
   const SearchProductButton = (e) => {
     setSearchText(e.target.value);
   };
+
+  const getUsers = async () => {
+    if (typeof windows !== undefined) {
+      const tempArray = [];
+      const products = await axios.get(
+        "https://merchport.z1p.xyz/api/_products"
+      );
+      console.log(products.data.result);
+      const allProducts = products.data.result;
+      allProducts.forEach((product) => {
+        product["delete"] = (
+          <Button type="danger">
+            <DeleteOutlined />
+          </Button>
+        );
+        product["edit"] = (
+          <Popover placement="bottom" trigger="click">
+            <Button>
+              <EditProduct />
+            </Button>
+          </Popover>
+        );
+      });
+
+      setProduct(allProducts);
+    }
+  };
+
+  useEffect(() => {
+    getUsers();
+  }, []);
 
   const start = () => {
     setLoading(true); // ajax request after empty completing
@@ -224,7 +166,7 @@ export default function Products() {
           {hasSelected ? `Selected ${selectedRowKeys.length} items` : ""}
         </span>
       </div>
-      <Table
+      {/* <Table
         rowSelection={rowSelection}
         columns={columns}
         dataSource={data.filter((val) => {
@@ -236,6 +178,18 @@ export default function Products() {
             return val;
           }
         })}
+        pagination={{
+          current: page,
+          pageSize: pageSize,
+          onChange: (page, pageSize) => {
+            setPage(page);
+            setPageSize(pageSize);
+          },
+        }}
+      /> */}
+      <TableData
+        data={product}
+        column={columns}
         pagination={{
           current: page,
           pageSize: pageSize,

@@ -1,8 +1,10 @@
 import { Card, Row } from "antd";
-import React from "react";
+
 import img1 from "../../assets/images/product.jpg";
 
-const UserDetailsHere = () => {
+const UserDetailsHere = ({data}) => {
+  const user = data;
+  
   return (
     <Card>
       <div
@@ -19,30 +21,22 @@ const UserDetailsHere = () => {
         <div style={{ margin: "5px", paddingLeft: "10px" }}>
           <Row>
             <h3 style={{ marginTop: "12px" }}>User Details Here</h3>
-            {/* <Button type="link">{pencil}</Button> */}
+   
           </Row>
 
           <h4>
-            <b>Name:</b> Product
+            <b>Name:</b> {user.username}
           </h4>
           <p>
-            <b>Description:</b> Hi, This is shop user details . <br />.
+            <b>Mobile:</b> {user.phoneNumber}
           </p>
           <p>
-            <b>Mobile:</b> (88) 1211 1214 123
+            <b>Email:</b> {user.email}
           </p>
           <p>
-            <b>Email:</b> ****@gmail.com
+            <b>Created at:</b> {user.createdAt}
           </p>
-          <p>
-            <b>Location:</b> BD
-          </p>
-          <p>
-            <b>Total Order: </b>5
-          </p>
-          <p>
-            <b>Last Order:</b> 22-02-2022
-          </p>
+
         </div>
       </div>
     </Card>

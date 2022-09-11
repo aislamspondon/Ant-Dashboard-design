@@ -36,6 +36,7 @@ const validateMessages = {
 
 const AddProduct = () => {
   const [fileHist, setFileHist] = useState(null);
+ 
 
 
   const onFinish = async(values) => {
@@ -46,19 +47,24 @@ const AddProduct = () => {
     console.log(refresh_token);
     console.log(values);
     const ProductsPush = await axios.post(`https://merchport.z1p.xyz/api/products`, values, {
-      headers: { 'Bearer': `${refresh_token}`
-    }
+      headers: { Authorization: `${refresh_token}` }
   })
+  if(ProductsPush.status === 201){
+    window.location.reload(false);
     console.log(ProductsPush);
+  }
   };
 
   const normFile = (e) => {
     const images = [];
-    e.fileHist.forEach(each => {
-      images.push(each.uid);
-    });
+    if(Array.isArray(e.fileHist)) {
+
+      e.fileHist.forEach(each => {
+        images.push(each.uid);
+      });
+    }
+    images.push(e.fileHist);
     setFileHist(e.fileList);
-    console.log(fileHist.uid);
   };
 
   return (

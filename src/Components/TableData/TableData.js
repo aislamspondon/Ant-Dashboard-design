@@ -7,15 +7,6 @@ const TableData = ({data, column}) => {
   return (
     <Table
     dataSource={data}
-    // dataSource={data.filter((val) => {
-    //   if (searchText === "") {
-    //     return val;
-    //   } else if (
-    //     val.name.toLowerCase().includes(searchText.toLowerCase())
-    //   ) {
-    //     return val;
-    //   }
-    // })}
     columns={column}
     // pagination={{
     //   current: page,
