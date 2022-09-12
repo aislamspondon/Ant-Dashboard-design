@@ -1,5 +1,5 @@
 import { StopOutlined } from "@ant-design/icons";
-import { Button, Typography } from "antd";
+import { Button, message, Typography } from "antd";
 import axios from "axios";
 import { React, useEffect, useState } from "react";
 import TableData from "./TableData/TableData";
@@ -44,6 +44,19 @@ export default function Users() {
   const [pageSize, setPageSize] = useState(10);
   const [dataArray, setDataArray] = useState();
 
+  const suspendUser = async(e,uid) => {
+    const suspenduser = await axios.put(`https://merchport.z1p.xyz/api/_users/${uid}/disable`);
+    if(suspenduser.status === 200){
+      getUsers();
+      message.success("User Suspended");
+    }
+    else {
+      message.error("Something went wrong");
+      
+    }
+    
+  }
+
   const getUsers = async () => {
     if (typeof windows !== undefined) {
       const tempArray = [];
@@ -59,7 +72,7 @@ export default function Users() {
           dataObject["email"] = user.account.email;
           dataObject["phoneNumber"] = user.account.phoneNumber;
           dataObject["button"] = (
-            <Button type="danger" icon={<StopOutlined />}>
+            <Button type="danger" onClick={(e)=>suspendUser(e,user.id)} icon={<StopOutlined />}>
               Suspend/Restrict
             </Button>)
           
