@@ -1,5 +1,5 @@
 import { DeleteOutlined, SearchOutlined } from "@ant-design/icons";
-import { Button, Divider, Input, Popover, Typography, Image } from "antd";
+import { Button, Divider, Input, Popover, Typography, Image, message } from "antd";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import EditProduct from "./ChildPages/EditProduct";
@@ -52,11 +52,21 @@ export default function Products() {
   const [pageSize, setPageSize] = useState(10);
   const [searchText, setSearchText] = useState("");
   const [product, setProduct] = useState();
+  const [token, setToken] = useState();
   const SearchProductButton = (e) => {
     setSearchText(e.target.value);
   };
+  const deleteProduct = async (e, prodId) =>{
+    const deletedProduct = await axios.delete(`https://merchport.z1p.xyz/api/products/${prodId}`, {
+      headers: { Authorization: `${token}` }
+    });
+    if(deleteProduct.status === 200){
+      getProducts();
+      message.success("Deleted with Success");
+    }
+  } 
 
-  const getUsers = async () => {
+  const getProducts = async () => {
     if (typeof windows !== undefined) {
       const tempArray = [];
       const products = await axios.get(
@@ -74,7 +84,7 @@ export default function Products() {
   />
         )
         product["delete"] = (
-          <Button type="danger">
+          <Button type="danger" onClick={(e)=>deleteProduct(e,product.id )}>
             <DeleteOutlined />
           </Button>
         );
@@ -92,7 +102,9 @@ export default function Products() {
   };
 
   useEffect(() => {
-    getUsers();
+    getProducts();
+    const token = localStorage.getItem('refresh_token');
+    setToken(token);
   }, []);
 
   const start = () => {
