@@ -98,13 +98,13 @@ export default function Products() {
       });
 
       setProduct(allProducts);
+      const token = localStorage.getItem('refresh_token');
+    setToken(token);
     }
   };
 
   useEffect(() => {
     getProducts();
-    const token = localStorage.getItem('refresh_token');
-    setToken(token);
   }, []);
 
   const start = () => {

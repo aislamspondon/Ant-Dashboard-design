@@ -17,6 +17,7 @@ export default function LoginTab() {
     if(login.status !== 401){
       localStorage.setItem('access_token', login.data.access_token);
       localStorage.setItem('refresh_token', login.data.refresh_token);
+      localStorage.setItem('name', login.data.user.profile.displayName);
       setFlag(true);
 
     }
