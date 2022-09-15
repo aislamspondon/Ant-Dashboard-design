@@ -3,24 +3,25 @@ import { message, Popconfirm } from "antd";
 import "antd/dist/antd.css";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import UserDetailsHere from "./UserDetailsHere";
+import ShopDetailsHere from "./ShopDetailsHere";
 
-function UserDetail({ userDetailsList }) {
-  const userDetails = userDetailsList;
-  const [user, setUser] = useState();
-  const getUserInfo = async () => {
+export default function ShopDetails({ shopDetailsList }) {
+  const shopDetails = shopDetailsList;
+  const [shop, setShop] = useState();
+  const getShopInfo = async () => {
     if (typeof windows !== undefined) {
-      const user = await axios.get(
-        `https://merchport.z1p.xyz/api/users/${userDetails.id}`
+      const shop = await axios.get(
+        `https://merchport.z1p.xyz/api/shops/${shopDetails.id}`
       );
-      setUser(user.data.account);
+
+      setShop(shop.data);
     }
   };
   useEffect(() => {
-    getUserInfo();
+    getShopInfo();
   });
 
-  console.log("This is ", userDetails);
+  console.log("This is ", shopDetails);
 
   function confirm(e) {
     console.log(e);
@@ -31,11 +32,12 @@ function UserDetail({ userDetailsList }) {
     console.log(e);
     message.error("Click on Back");
   }
+  console.log("This is Shop Details : ", shop);
   return (
     <>
       <Popconfirm
         placement="topLeft"
-        title={<UserDetailsHere data={user} />}
+        title={<ShopDetailsHere data={shop} />}
         onConfirm={confirm}
         onCancel={cancel}
         okText="Update"
@@ -48,5 +50,3 @@ function UserDetail({ userDetailsList }) {
     </>
   );
 }
-
-export default UserDetail;

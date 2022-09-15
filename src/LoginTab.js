@@ -1,17 +1,34 @@
-import { Button, Checkbox, Form, Input, Typography } from "antd";
-import React from "react";
-// import LayoutDashboard from "./Components/LayoutDashboard";
+
+import { Button, Checkbox, Form, Input, message, Typography } from "antd";
+import axios from "axios";
+import React, { useState } from "react";
+import { Navigate } from "react-router-dom";
 let { Title } = Typography;
 
+
 export default function LoginTab() {
-  // const username = "admin";
-  // const password = "admin";
-  const onFinish = (values) => {
-    // <LayoutDashboard />;
+  const [flag, setFlag] = useState(false);
+  const onFinish = async(values) => {
+    console.log(values)
+
+
+    const login = await axios.post('https://merchport.z1p.xyz/api/auth/login',values);
+    console.log(login);
+    if(login.status !== 401){
+      localStorage.setItem('access_token', login.data.access_token);
+      localStorage.setItem('refresh_token', login.data.refresh_token);
+      localStorage.setItem('name', login.data.user.profile.displayName);
+      setFlag(true);
+
+    }
+    else {
+      onFinishFailed(login);
+    }
   };
 
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
+    message.error("error:",errorInfo);
   };
   return (
     <>
@@ -54,7 +71,7 @@ export default function LoginTab() {
         >
           <Form.Item
             label="Username"
-            name="username"
+            name="login"
             rules={[
               {
                 required: true,
@@ -100,6 +117,9 @@ export default function LoginTab() {
             </Button>
           </Form.Item>
         </Form>
+      </div>
+      <div>
+        {flag ? <Navigate to="/home"/> : null} 
       </div>
     </>
   );

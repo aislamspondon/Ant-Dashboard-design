@@ -19,9 +19,12 @@ import {
 // import ManageAdmin from "./ManageAdmin";
 // import Products from "./Products";
 // import Users from "./Users";
+import axios from "axios";
+import { Avatar, Badge, Form, Input, Layout, Menu, message } from "antd";
 
-import { Avatar, Badge, Input, Layout, Menu } from "antd";
 import { React, useState } from "react";
+
+const Search = Input.Search;
 
 const { Header, Content, Footer, Sider } = Layout;
 // const { SubMenu } = Menu;
@@ -33,6 +36,11 @@ function getItem(label, key, icon, children, type) {
     label,
     type,
   };
+}
+const logOut =()=>{
+  localStorage.removeItem("access_token");
+  localStorage.removeItem("refresh_token");
+  localStorage.removeItem("name");
 }
 const items = [
   getItem(<a href="/home">DASHBOARD</a>, "sub1", <DashboardOutlined />),
@@ -48,29 +56,44 @@ const items = [
   getItem(<a href="/products">Products</a>, "sub4", <UsergroupAddOutlined />),
   getItem(<a href="/matrix">Matrix</a>, "sub4", <PicRightOutlined />),
   getItem(<a href="/adminlogs">Admin Logs</a>, "sub5", <HistoryOutlined />),
-  getItem("Log-Out", "sub6", <LogoutOutlined />),
+  getItem(<a href="/" onClick={()=>logOut()}>Log-Out</a>, "sub6", <LogoutOutlined />),
 ];
 
 export default function Layout2({ children }) {
   const [collapsed, setCollapsed] = useState(false);
+  // const [search, setSearch] = useState();
   const onClick = (e) => {
     console.log("click", e);
   };
+  const searchString =async (e)=>{
+    console.log(e);
+    // setSearch(e)
+
+    const searched = await axios.get(`https://merchport.z1p.xyz/api/search?q=${e}`);
+    console.log(searched);
+    if(searched.data.count === 0){
+      message.error(`Search ${e} is not found`);
+    }
+  }
+  
   return (
     <Layout>
       <Header className="header">
         <div className="brand-and-search">
           <div className="logo">Demo</div>
-          <Input
+          
+          <Search
             style={{
               width: 300,
               height: 50,
               marginLeft: 30,
             }}
+            name="search"
+            onSearch={(e)=>searchString(e)}
             placeholder="Search Here"
             prefix={<SearchOutlined />}
             allowClear
-          />
+            />
         </div>
         <div
           style={{
@@ -79,7 +102,7 @@ export default function Layout2({ children }) {
           }}
         >
           <h3 style={{ color: "white", paddingRight: 20 }}>
-            Welcome Asraful Islam
+            {localStorage.getItem('name')}
           </h3>
 
           <Badge count={3}>

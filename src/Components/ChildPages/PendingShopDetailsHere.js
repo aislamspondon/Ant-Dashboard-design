@@ -1,10 +1,8 @@
 import { Card, Row } from "antd";
-
+import React from "react";
 import img1 from "../../assets/images/product.jpg";
 
-const UserDetailsHere = ({data}) => {
-  const user = data;
-  
+const PendingShopDetailsHere = () => {
   return (
     <Card>
       <div
@@ -21,26 +19,34 @@ const UserDetailsHere = ({data}) => {
         <div style={{ margin: "5px", paddingLeft: "10px" }}>
           <Row>
             <h3 style={{ marginTop: "12px" }}>User Details Here</h3>
-   
+            {/* <Button type="link">{pencil}</Button> */}
           </Row>
 
           <h4>
-            <b>Name:</b> {user.username}
+            <b>Name:</b> Product
           </h4>
           <p>
-            <b>Mobile:</b> {user.phoneNumber}
+            <b>Description:</b> Hi, This is shop user details . <br />.
           </p>
           <p>
-            <b>Email:</b> {user.email}
+            <b>Mobile:</b> (88) 1211 1214 123
           </p>
           <p>
-            <b>Created at:</b> {user.createdAt}
+            <b>Email:</b> ****@gmail.com
           </p>
-
+          <p>
+            <b>Location:</b> BD
+          </p>
+          <p>
+            <b>Total Order: </b>5
+          </p>
+          <p>
+            <b>Last Order:</b> 22-02-2022
+          </p>
         </div>
       </div>
     </Card>
   );
 };
 
-export default UserDetailsHere;
+export default PendingShopDetailsHere;

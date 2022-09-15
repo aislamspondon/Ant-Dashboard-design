@@ -2,9 +2,9 @@ import { Card, Row } from "antd";
 
 import img1 from "../../assets/images/product.jpg";
 
-const UserDetailsHere = ({data}) => {
-  const user = data;
-  
+const ShopDetailsHere = ({ data }) => {
+  const shop = data;
+
   return (
     <Card>
       <div
@@ -21,26 +21,24 @@ const UserDetailsHere = ({data}) => {
         <div style={{ margin: "5px", paddingLeft: "10px" }}>
           <Row>
             <h3 style={{ marginTop: "12px" }}>User Details Here</h3>
-   
           </Row>
 
           <h4>
-            <b>Name:</b> {user.username}
+            <b>Name:</b> {shop.name}
           </h4>
           <p>
-            <b>Mobile:</b> {user.phoneNumber}
+            <b>Shop ID:</b> {shop.id}
           </p>
           <p>
-            <b>Email:</b> {user.email}
+            <b>Found Date:</b> {shop.foundDate}
           </p>
           <p>
-            <b>Created at:</b> {user.createdAt}
+            <b>Created at:</b> {shop.createdAt}
           </p>
-
         </div>
       </div>
     </Card>
   );
 };
 
-export default UserDetailsHere;
+export default ShopDetailsHere;

@@ -1,7 +1,7 @@
 import { FastBackwardOutlined, InboxOutlined } from "@ant-design/icons";
 import { Button, Form, Input, InputNumber, Upload } from "antd";
-
-import React from "react";
+import axios from "axios";
+import React, { useState } from "react";
 const layout = {
   labelCol: {
     span: 8,
@@ -11,15 +11,15 @@ const layout = {
   },
 };
 
-const normFile = (e) => {
-  console.log("Upload event:", e);
+// const normFile = (e) => {
+//   console.log("Upload event:", e);
 
-  if (Array.isArray(e)) {
-    return e;
-  }
+//   if (Array.isArray(e)) {
+//     return e;
+//   }
 
-  return e?.fileList;
-};
+//   return e?.fileList;
+// };
 /* eslint-disable no-template-curly-in-string */
 
 const validateMessages = {
@@ -35,8 +35,36 @@ const validateMessages = {
 /* eslint-enable no-template-curly-in-string */
 
 const AddProduct = () => {
-  const onFinish = (values) => {
+  const [fileHist, setFileHist] = useState(null);
+ 
+
+
+  const onFinish = async(values) => {
+    values.images = fileHist;
+    const category = values.categories;
+    values.categories = [category];
+    const refresh_token = localStorage.getItem("refresh_token");
+    console.log(refresh_token);
     console.log(values);
+    const ProductsPush = await axios.post(`https://merchport.z1p.xyz/api/products`, values, {
+      headers: { Authorization: `${refresh_token}` }
+  })
+  if(ProductsPush.status === 201){
+    window.location.reload(false);
+    console.log(ProductsPush);
+  }
+  };
+
+  const normFile = (e) => {
+    const images = [];
+    if(Array.isArray(e.fileHist)) {
+
+      e.fileHist.forEach(each => {
+        images.push(each.uid);
+      });
+    }
+    images.push(e.fileHist);
+    setFileHist(e.fileList);
   };
 
   return (
@@ -62,6 +90,7 @@ const AddProduct = () => {
         >
           <Form.Item
             label="Product Name"
+            name={"name"}
             rules={[
               {
                 required: true,
@@ -71,7 +100,7 @@ const AddProduct = () => {
             <Input placeholder="Enter Your Product Name..." />
           </Form.Item>
           <Form.Item
-            name={["user", "Category"]}
+            name={"categories"}
             label="Category"
             rules={[
               {
@@ -82,7 +111,7 @@ const AddProduct = () => {
             <Input placeholder="Enter Your Category..." />
           </Form.Item>
           <Form.Item
-            name={["user", "Price"]}
+            name={"price"}
             label="Price"
             rules={[
               {
@@ -95,17 +124,17 @@ const AddProduct = () => {
             <InputNumber placeholder="Price" />
           </Form.Item>
 
-          <Form.Item name={["user", "Description"]} label="Description">
+          <Form.Item name={"description"} label="Description">
             <Input.TextArea placeholder="Enter Product Description" />
           </Form.Item>
           <Form.Item label="Dragger">
             <Form.Item
-              name="dragger"
+              name="images"
               valuePropName="fileList"
               getValueFromEvent={normFile}
               noStyle
             >
-              <Upload.Dragger name="files" action="/upload.do">
+              <Upload.Dragger name="files">
                 <p className="ant-upload-drag-icon">
                   <InboxOutlined />
                 </p>

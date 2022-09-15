@@ -1,338 +1,75 @@
 import { SearchOutlined } from "@ant-design/icons";
-import { Button, Input, Table, Typography } from "antd";
-import { React, useState } from "react";
-import UserDetail from "./ChildPages/UserDetail";
+import { Button, Input, Typography } from "antd";
+import axios from "axios";
+import { React, useEffect, useState } from "react";
+import ShopDetails from "./ChildPages/ShopDetails";
+import TableData from "./TableData/TableData";
 let { Title } = Typography;
-const data = [
-  {
-    id: 1,
-    name: "Amazon",
-    shopId: "05364314752",
-    email: "amazon458@gmail.com",
-    mobile: "0000000000",
-    details: (
-      <Button>
-        <UserDetail style={{ height: "20px", width: "20px" }} />
-      </Button>
-    ),
-  },
-  {
-    id: 2,
-    name: "BSRM",
-    shopId: "05388304752",
-    email: "amazon458@gmail.com",
-    mobile: "0000000000",
-    details: (
-      <Button>
-        <UserDetail style={{ height: "20px", width: "20px" }} />
-      </Button>
-    ),
-  },
-  {
-    id: 3,
-    name: "Silicon ",
-    shopId: "05364317510",
-    email: "amazon458@gmail.com",
-    mobile: "0000000000",
-    details: (
-      <Button>
-        <UserDetail style={{ height: "20px", width: "20px" }} />
-      </Button>
-    ),
-  },
-  {
-    id: 4,
-    name: "Jack Shop",
-    shopId: "05364313302",
-    email: "amazon458@gmail.com",
-    mobile: "0000000000",
-    details: (
-      <Button>
-        <UserDetail style={{ height: "20px", width: "20px" }} />
-      </Button>
-    ),
-  },
-  {
-    id: 5,
-    name: "Car House",
-    shopId: "05364311073",
-    email: "amazon458@gmail.com",
-    mobile: "0000000000",
-    details: (
-      <Button>
-        <UserDetail style={{ height: "20px", width: "20px" }} />
-      </Button>
-    ),
-  },
-  {
-    id: 6,
-    name: "Movie Ghar",
-    shopId: "05364310036",
-    email: "amazon458@gmail.com",
-    mobile: "0000000000",
-    details: (
-      <Button>
-        <UserDetail style={{ height: "20px", width: "20px" }} />
-      </Button>
-    ),
-  },
-  {
-    id: 7,
-    name: "Nylon Sher",
-    shopId: "05510014752",
-    email: "amazon458@gmail.com",
-    mobile: "0000000000",
-    details: (
-      <Button>
-        <UserDetail style={{ height: "20px", width: "20px" }} />
-      </Button>
-    ),
-  },
-  {
-    id: 8,
-    name: "Rafid Milon Store",
-    shopId: "05364310000",
-    email: "amazon458@gmail.com",
-    mobile: "0000000000",
-    details: (
-      <Button>
-        <UserDetail style={{ height: "20px", width: "20px" }} />
-      </Button>
-    ),
-  },
-  {
-    id: 9,
-    name: "Tesla",
-    shopId: "05336454752",
-    email: "amazon458@gmail.com",
-    mobile: "0000000000",
-    details: (
-      <Button>
-        <UserDetail style={{ height: "20px", width: "20px" }} />
-      </Button>
-    ),
-  },
-  {
-    id: 10,
-    name: "Facebook",
-    shopId: "07823314752",
-    email: "amazon458@gmail.com",
-    mobile: "0000000000",
-    details: (
-      <Button>
-        <UserDetail style={{ height: "20px", width: "20px" }} />
-      </Button>
-    ),
-  },
-  {
-    id: 11,
-    name: "RabRab Book House",
-    shopId: "05136437492",
-    email: "amazon458@gmail.com",
-    mobile: "0000000000",
-    details: (
-      <Button>
-        <UserDetail style={{ height: "20px", width: "20px" }} />
-      </Button>
-    ),
-  },
-  {
-    id: 12,
-    name: "Rainbow Street",
-    shopId: "05364951352",
-    email: "amazon458@gmail.com",
-    mobile: "0000000000",
-    details: (
-      <Button>
-        <UserDetail style={{ height: "20px", width: "20px" }} />
-      </Button>
-    ),
-  },
-  {
-    id: 13,
-    name: "Food Ala",
-    shopId: "05364311032",
-    email: "amazon458@gmail.com",
-    mobile: "0000000000",
-    details: (
-      <Button>
-        <UserDetail style={{ height: "20px", width: "20px" }} />
-      </Button>
-    ),
-  },
-  {
-    id: 14,
-    name: "Nikon",
-    shopId: "05396574752",
-    email: "amazon458@gmail.com",
-    mobile: "0000000000",
-    details: (
-      <Button>
-        <UserDetail style={{ height: "20px", width: "20px" }} />
-      </Button>
-    ),
-  },
-  {
-    id: 15,
-    name: "Alibaba",
-    shopId: "05363020752",
-    email: "amazon458@gmail.com",
-    mobile: "0000000000",
-    details: (
-      <Button>
-        <UserDetail style={{ height: "20px", width: "20px" }} />
-      </Button>
-    ),
-  },
-  {
-    id: 16,
-    name: "Daraz",
-    shopId: "05963514752",
-    email: "amazon458@gmail.com",
-    mobile: "0000000000",
-    details: (
-      <Button>
-        <UserDetail style={{ height: "20px", width: "20px" }} />
-      </Button>
-    ),
-  },
-  {
-    id: 17,
-    name: "Bikroy",
-    shopId: "11544314752",
-    email: "amazon458@gmail.com",
-    mobile: "0000000000",
-    details: (
-      <Button>
-        <UserDetail style={{ height: "20px", width: "20px" }} />
-      </Button>
-    ),
-  },
-  {
-    id: 18,
-    name: "Coffee House",
-    shopId: "05364319562",
-    email: "amazon458@gmail.com",
-    mobile: "0000000000",
-    details: (
-      <Button>
-        <UserDetail style={{ height: "20px", width: "20px" }} />
-      </Button>
-    ),
-  },
-  {
-    id: 19,
-    name: "Light House",
-    shopId: "05399664752",
-    email: "amazon458@gmail.com",
-    mobile: "0000000000",
-    details: (
-      <Button>
-        <UserDetail style={{ height: "20px", width: "20px" }} />
-      </Button>
-    ),
-  },
-  {
-    id: 20,
-    name: "Raisul Estarn",
-    shopId: "05396514752",
-    email: "amazon458@gmail.com",
-    mobile: "0000000000",
-    details: (
-      <Button>
-        <UserDetail style={{ height: "20px", width: "20px" }} />
-      </Button>
-    ),
-  },
-  {
-    id: 21,
-    name: "Lack House",
-    shopId: "05364314555",
-    email: "amazon458@gmail.com",
-    mobile: "0000000000",
-    details: (
-      <Button>
-        <UserDetail style={{ height: "20px", width: "20px" }} />
-      </Button>
-    ),
-  },
-  {
-    id: 22,
-    name: "Aman Velly",
-    shopId: "05364314784",
-    email: "amazon458@gmail.com",
-    mobile: "0000000000",
-    details: (
-      <Button>
-        <UserDetail style={{ height: "20px", width: "20px" }} />
-      </Button>
-    ),
-  },
-  {
-    id: 23,
-    name: "Ahad Mir Reja",
-    shopId: "05364314924",
-    email: "amazon458@gmail.com",
-    mobile: "0000000000",
-    details: (
-      <Button>
-        <UserDetail style={{ height: "20px", width: "20px" }} />
-      </Button>
-    ),
-  },
-  {
-    id: 24,
-    name: "Akheri Barta",
-    shopId: "05364315423",
-    email: "amazon458@gmail.com",
-    mobile: "0000000000",
-    details: (
-      <Button>
-        <UserDetail style={{ height: "20px", width: "20px" }} />
-      </Button>
-    ),
-  },
-];
 
-const columns = [
-  {
-    title: "NO",
-    dataIndex: "id",
-    key: "key",
-  },
-  {
-    title: "NAME",
-    dataIndex: "name",
-    key: "key",
-  },
-  {
-    title: "SHOP ID",
-    dataIndex: "shopId",
-    key: "key",
-  },
-  {
-    title: "EMAIL",
-    dataIndex: "email",
-    key: "key",
-  },
-  {
-    title: "PHONE",
-    dataIndex: "mobile",
-    key: "key",
-  },
-  {
-    title: "Details",
-    dataIndex: "details",
-    key: "key",
-  },
-];
 export default function FindShop() {
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
   const [searchText, setSearchText] = useState("");
+  const [shops, setShops] = useState();
   const handleChange = (e) => {
     setSearchText(e.target.value);
   };
+
+  const columsNew = [
+    {
+      title: "logo",
+      dataIndex: "location",
+      key: "location",
+    },
+    {
+      title: "Name",
+      dataIndex: "name",
+      key: "name",
+    },
+    {
+      title: "Shop ID",
+      dataIndex: "id",
+      key: "id",
+    },
+    {
+      title: "Description",
+      dataIndex: "description",
+      key: "description",
+    },
+    {
+      title: "Foundation date",
+      dataIndex: "foundDate",
+      key: "foundDate",
+    },
+    {
+      title: "Details",
+      dataIndex: "details",
+      key: "key",
+    },
+  ];
+
+  const getShops = async () => {
+    if (typeof window !== undefined) {
+      const shops = await axios.get("https://merchport.z1p.xyz/api/shops");
+      const allShops = shops.data.result;
+      allShops.forEach((shop) => {
+        shop["details"] = (
+          <Button>
+            <ShopDetails
+              style={{ height: "20px", width: "20px" }}
+              shopDetailsList={shop}
+            />
+          </Button>
+        );
+      });
+
+      setShops(shops.data.result);
+    }
+  };
+  useEffect(() => {
+    getShops();
+  }, []);
+
   return (
     <>
       <Title
@@ -362,7 +99,8 @@ export default function FindShop() {
         allowClear
         value={searchText}
       />
-      <Table
+
+      {/* <Table
         dataSource={data.filter((val) => {
           if (searchText === "") {
             return val;
@@ -381,7 +119,19 @@ export default function FindShop() {
             setPageSize(pageSize);
           },
         }}
-      ></Table>
+      ></Table> */}
+      <TableData
+        data={shops}
+        column={columsNew}
+        pagination={{
+          current: page,
+          pageSize: pageSize,
+          onChange: (page, pageSize) => {
+            setPage(page);
+            setPageSize(pageSize);
+          },
+        }}
+      />
     </>
   );
 }
