@@ -58,7 +58,7 @@ export default function Products() {
   };
   const deleteProduct = async (e, prodId) =>{
     const deletedProduct = await axios.delete(`https://merchport.z1p.xyz/api/products/${prodId}`, {
-      headers: { Authorization: `${token}` }
+      headers: { authorization: `Bearer ${token}` }
     });
     if(deleteProduct.status === 200){
       getProducts();
@@ -91,7 +91,7 @@ export default function Products() {
         product["edit"] = (
           <Popover placement="bottom" trigger="click">
             <Button>
-              <EditProduct />
+              <EditProduct product={product}/>
             </Button>
           </Popover>
         );

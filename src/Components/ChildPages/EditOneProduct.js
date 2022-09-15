@@ -1,4 +1,4 @@
-import { Form, Input } from "antd";
+import { Button, Form, Input, message } from "antd";
 import React from "react";
 const layout = {
   labelCol: {
@@ -22,44 +22,61 @@ const validateMessages = {
 };
 /* eslint-enable no-template-curly-in-string */
 
-const EditOneProduct = () => {
+const EditOneProduct = ({product}) => {
+  //console.log(product);
+  const prodCategories = product.categories;
+  const categories = [];
   const onFinish = (values) => {
     console.log(values);
   };
+  const onFinishFailed = ()=>{
+    message.error("Error");
+  }
+  prodCategories.forEach((single)=>{
+    console.log(single.name);
+    categories.push(single.name);
+  })
+
 
   return (
     <Form
       {...layout}
       name="nest-messages"
-      onFinish={onFinish}
+      // onFinish={onFinish}
+      // onFinishFailed={onFinishFailed}
       validateMessages={validateMessages}
     >
       <Form.Item
         label="Name"
+        name="name"
         rules={[
           {
             required: true,
           },
         ]}
+        initialValue={product.name}
       >
-        <Input value="Chocolate 1" />
+        <Input placeholder={product.name} />
       </Form.Item>
       <Form.Item
         label="Category"
-        rules={[
-          {
-            type: "email",
-          },
-        ]}
+        name="categories"
+        initialValue={categories.join(",")}
       >
-        <Input value="desserts" />
-      </Form.Item>
-
-      <Form.Item label="Status">
         <Input />
       </Form.Item>
-      <Form.Item label="Description">
-        <Input.TextArea value="provides plenty of UI components to enrich your web applications, and we will improve components experience consistently." />
+
+      <Form.Item label="Price" name="price" initialValue={product.price}>
+        <Input  />
+      </Form.Item>
+      <Form.Item label="Description" name="description" initialValue={product.description}>
+        <Input.TextArea />
+      </Form.Item>
+      <Form.Item>
+
+      <Button type="primary" htmlType="submit" onClick={(event)=>onFinish(event)}>
+        Submit
+      </Button>
       </Form.Item>
     </Form>
   );

@@ -3,17 +3,19 @@ import { Popconfirm } from "antd";
 import React from "react";
 import EditOneProduct from "./EditOneProduct";
 
-const EditProduct = () => {
-  const confirm = () =>
-    new Promise((resolve) => {
-      setTimeout(() => resolve(null), 3000);
-    });
+const EditProduct = ({product}) => {
+  console.log(product);
+  const confirm = (values) => {
+    console.log(values)
+  }
+    // new Promise((resolve) => {
+    //   setTimeout(() => resolve(null), 3000);
+    // });
 
   return (
     <Popconfirm
-      title={EditOneProduct}
+      title={<EditOneProduct product={product}/>}
       onConfirm={confirm}
-      onVisibleChange={() => console.log("visible change")}
     >
       <EditOutlined />
     </Popconfirm>

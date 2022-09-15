@@ -1,5 +1,5 @@
 
-import { Button, Checkbox, Form, Input, Typography } from "antd";
+import { Button, Checkbox, Form, Input, message, Typography } from "antd";
 import axios from "axios";
 import React, { useState } from "react";
 import { Navigate } from "react-router-dom";
@@ -28,6 +28,7 @@ export default function LoginTab() {
 
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
+    message.error("error:",errorInfo);
   };
   return (
     <>
