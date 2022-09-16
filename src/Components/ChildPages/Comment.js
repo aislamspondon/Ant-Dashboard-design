@@ -9,9 +9,19 @@ function Comment({prodId}) {
   const [comments, setComments] = useState();
   const getComments = async () => {
     const commentsList = await axios.get(`https://merchport.z1p.xyz/api/products/${prodId}/comments`);
+    // const commentsList = await axios.get(`https://merchport.z1p.xyz/api/products/b133f87a-f0da-44e7-974a-7c24c27801a2/comments`);
     console.log(commentsList);
     if(commentsList.status === 200){
-      setComments(commentsList.data);
+      const dataArray = [];
+      if(commentsList.data.length > 0){
+        commentsList.data.forEach((comment)=>{
+          const dataObject = {}
+          dataObject["name"] = comment.user.profile.displayName;
+          dataObject["content"] = comment.content;
+          dataArray.push(dataObject);
+        })
+      }
+      setComments(dataArray);
     }
   }
   useEffect(() => {
