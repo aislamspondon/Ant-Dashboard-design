@@ -1,7 +1,7 @@
 import { Button, message, Typography } from "antd";
 import axios from "axios";
 import { React, useEffect, useState } from "react";
-import UserDetail from "./ChildPages/UserDetail";
+import PendingShopDetails from "./ChildPages/PendingShopDetails";
 import TableData from "./TableData/TableData";
 let { Title } = Typography;
 
@@ -48,18 +48,21 @@ export default function ApprovePendingShop() {
     },
   ];
   const UpdateShop = async (e, shopId, status) => {
-    message.success(shopId,"updated");    
+    message.success(shopId, "updated");
   };
   const getShops = async () => {
     if (typeof window !== undefined) {
-      const shops = await axios.get("https://merchport.z1p.xyz/api/shops");
+      const shops = await axios.get(
+        "https://merchport.z1p.xyz/api/_shops/pending-approval"
+      );
       const allShops = shops.data.result;
+      console.log("This is all", allShops);
       allShops.forEach((shop) => {
         shop["details"] = (
           <Button>
-            <UserDetail
+            <PendingShopDetails
               style={{ height: "20px", width: "20px" }}
-              userDetailsList={shop}
+              pendingShopDetailsList={shop}
             />
           </Button>
         );

@@ -5,6 +5,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import UserDetailsHere from "./UserDetailsHere";
 
+<<<<<<< HEAD
 function UserDetail({userDetailsList}) {
 
   const userDetails = userDetailsList;
@@ -21,6 +22,24 @@ function UserDetail({userDetailsList}) {
   })
 
   console.log(userDetails);
+=======
+function UserDetail({ userDetailsList }) {
+  const userDetails = userDetailsList;
+  const [user, setUser] = useState();
+  const getUserInfo = async () => {
+    if (typeof windows !== undefined) {
+      const user = await axios.get(
+        `https://merchport.z1p.xyz/api/users/${userDetails.id}`
+      );
+      setUser(user.data.account);
+    }
+  };
+  useEffect(() => {
+    getUserInfo();
+  });
+
+  console.log("This is ", userDetails);
+>>>>>>> 43075f3b41c1f54573661bc72af7a7804c96d53c
 
   function confirm(e) {
     console.log(e);
@@ -41,7 +60,7 @@ function UserDetail({userDetailsList}) {
         okText="Update"
         cancelText="X"
       >
-        <a href="..">
+        <a href="/">
           <SelectOutlined />
         </a>
       </Popconfirm>

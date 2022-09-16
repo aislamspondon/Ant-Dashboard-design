@@ -2,7 +2,7 @@ import { SearchOutlined } from "@ant-design/icons";
 import { Button, Input, Typography } from "antd";
 import axios from "axios";
 import { React, useEffect, useState } from "react";
-import UserDetail from "./ChildPages/UserDetail";
+import ShopDetails from "./ChildPages/ShopDetails";
 import TableData from "./TableData/TableData";
 let { Title } = Typography;
 
@@ -55,7 +55,10 @@ export default function FindShop() {
       allShops.forEach((shop) => {
         shop["details"] = (
           <Button>
-            <UserDetail style={{ height: "20px", width: "20px" }} userDetailsList={shop}/>
+            <ShopDetails
+              style={{ height: "20px", width: "20px" }}
+              shopDetailsList={shop}
+            />
           </Button>
         );
       });

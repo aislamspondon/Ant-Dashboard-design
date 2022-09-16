@@ -1,4 +1,4 @@
-import React from "react";
+import React, {  useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import AdminLogs from "./Components/AdminLogs";
 import ApprovePendingShop from "./Components/ApprovePendingShop";
@@ -13,92 +13,140 @@ import Products from "./Components/Products";
 import Users from "./Components/Users";
 
 export default function LoginRoute() {
+  const [logged] = useState(localStorage.getItem('refresh_token'));
+ 
+  
+ 
   return (
     <>
+   
       <Router>
         <Routes>
           <Route exact path="/" element={<Login />} />
+          
+          
           <Route
-            exact
-            path="/home"
-            element={
-              <LayoutDashboard>
-                <Home />
-              </LayoutDashboard>
+          exact
+          path="/home"
+          element={
+           <>
+               {logged ? ( <LayoutDashboard>  <Home />   </LayoutDashboard> ) : (<Login />)}
+               </>
             }
-          />
+            />
+         
+
           <Route
             exact
             path="/home"
             element={
+              <>
+              {logged? (
               <LayoutDashboard>
                 <Home />
               </LayoutDashboard>
+              ):(<Login />)}
+              </>
             }
           />
           <Route
             exact
             path="/users"
             element={
+              <>
+              {logged? (
               <LayoutDashboard>
-                <Users />
+               <Users />
               </LayoutDashboard>
+              ):(<Login />)}
+              </>
+             
             }
           />
           <Route
             exact
             path="/pendingshop"
             element={
+              <>
+              {logged? (
               <LayoutDashboard>
-                <ApprovePendingShop />
+               <ApprovePendingShop />
               </LayoutDashboard>
+              ):(<Login />)}
+              </>
+      
             }
           />
           <Route
             exact
             path="/findshop"
             element={
+              <>
+              {logged? (
               <LayoutDashboard>
-                <FindShop />
+              <FindShop />
               </LayoutDashboard>
+              ):(<Login />)}
+              </>
+             
             }
           />
           <Route
             exact
             path="/addproduct"
             element={
+              <>
+              {logged? (
               <LayoutDashboard>
-                <AddProduct />
+              <AddProduct />
               </LayoutDashboard>
+              ):(<Login />)}
+              </>
+           
             }
           />
           <Route
             exact
             path="/products"
             element={
+              <>
+              {logged? (
               <LayoutDashboard>
-                <Products />
+               <Products />
               </LayoutDashboard>
+              ):(<Login />)}
+              </>
+            
             }
           />
           <Route
             exact
             path="/adminlogs"
             element={
+              <>
+              {logged? (
               <LayoutDashboard>
                 <AdminLogs />
               </LayoutDashboard>
+              ):(<Login />)}
+              </>
+           
             }
           />
           <Route
             exact
             path="/matrix"
             element={
+              <>
+              {logged? (
               <LayoutDashboard>
-                <Matrix />
+              <Matrix />
               </LayoutDashboard>
+              ):(<Login />)}
+              </>
             }
           />
+          
         </Routes>
       </Router>
     </>

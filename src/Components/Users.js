@@ -2,16 +2,23 @@ import { StopOutlined } from "@ant-design/icons";
 import { Button, message, Typography } from "antd";
 import axios from "axios";
 import { React, useEffect, useState } from "react";
+import UserDetail from "./ChildPages/UserDetail";
 import TableData from "./TableData/TableData";
+
 let { Title } = Typography;
 
 
 const columns = [
   {
-    title: "NO",
-    dataIndex: "id",
-    key: "id",
+    title: "Image",
+    dataIndex: "image",
+    key: "image",
   },
+  // {
+  //   title: "NO",
+  //   dataIndex: "id",
+  //   key: "id",
+  // },
   {
     title: "Name",
     dataIndex: "displayName",
@@ -37,6 +44,11 @@ const columns = [
     dataIndex: "button",
     key: "key",
   },
+  {
+    title: "Details",
+    dataIndex: "details",
+    key: "details",
+  },
 ];
 
 export default function Users() {
@@ -61,12 +73,12 @@ export default function Users() {
     if (typeof windows !== undefined) {
       const tempArray = [];
         const users = await axios.get("https://merchport.z1p.xyz/api/_users");
-        //console.log(users.data);
+        console.log(users.data.result);
         const allusers = users.data.result;
         allusers.forEach((user) => {
           const dataObject = {};
-          
-          dataObject["id"] = user.id;
+          // dataObject["image"] =  
+          // dataObject["id"] = user.id;
           dataObject["displayName"] = user.profile.displayName;
           dataObject["username"] = user.account.username;
           dataObject["email"] = user.account.email;
@@ -75,7 +87,11 @@ export default function Users() {
             <Button type="danger" onClick={(e)=>suspendUser(e,user.id)} icon={<StopOutlined />}>
               Suspend/Restrict
             </Button>)
-          
+          dataObject["details"] = (
+            <Button>
+              <UserDetail style={{ height: "20px", width: "20px" }} userDetailsList={user}/>
+            </Button>
+          );
           tempArray.push(dataObject);
         });
         setDataArray(tempArray);
