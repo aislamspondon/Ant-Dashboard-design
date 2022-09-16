@@ -87,7 +87,7 @@ export default function Products() {
       const products = await axios.get(
         "https://merchport.z1p.xyz/api/_products?take=30"
       );
-      console.log(products.data.result);
+      console.log("This is ->",products.data.result);
       const allProducts = products.data.result;
       allProducts.forEach((product) => {
         const imageLocation =

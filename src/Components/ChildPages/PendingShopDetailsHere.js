@@ -2,7 +2,8 @@ import { Card, Row } from "antd";
 import React from "react";
 import img1 from "../../assets/images/product.jpg";
 
-const PendingShopDetailsHere = () => {
+const PendingShopDetailsHere = (props) => {
+  console.log("Props are here", props.data)
   return (
     <Card>
       <div
@@ -23,25 +24,16 @@ const PendingShopDetailsHere = () => {
           </Row>
 
           <h4>
-            <b>Name:</b> Product
+            <b>Name:</b> {props.data.name}
           </h4>
           <p>
-            <b>Description:</b> Hi, This is shop user details . <br />.
+            <b>Shop ID:</b> {props.data.id} <br />
           </p>
           <p>
-            <b>Mobile:</b> (88) 1211 1214 123
+            <b>Foundation Date:</b> {props.data.foundDate}
           </p>
           <p>
-            <b>Email:</b> ****@gmail.com
-          </p>
-          <p>
-            <b>Location:</b> BD
-          </p>
-          <p>
-            <b>Total Order: </b>5
-          </p>
-          <p>
-            <b>Last Order:</b> 22-02-2022
+            <b>Created Date:</b> {props.data.createdAt}
           </p>
         </div>
       </div>

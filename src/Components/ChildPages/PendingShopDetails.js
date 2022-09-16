@@ -3,7 +3,7 @@ import { message, Popconfirm } from "antd";
 import "antd/dist/antd.css";
 import PendingShopDetailsHere from "./PendingShopDetailsHere";
 
-function PendingShopDetails() {
+function PendingShopDetails(props) {
   function confirm(e) {
     console.log(e);
     message.success("Click on Yes");
@@ -17,7 +17,7 @@ function PendingShopDetails() {
     <>
       <Popconfirm
         placement="topLeft"
-        title={PendingShopDetailsHere}
+        title={<PendingShopDetailsHere data = {props.pendingShopDetailsList}/>}
         onConfirm={confirm}
         onCancel={cancel}
         okText="Update"

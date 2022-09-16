@@ -55,7 +55,6 @@ const items = [
     getItem(<a href="/findshop">Find Shop</a>, "2", <FileSearchOutlined />),
   ]),
   getItem(<a href="/products">Products</a>, "sub4", <UsergroupAddOutlined />),
-  getItem(<a href="/matrix">Matrix</a>, "sub4", <PicRightOutlined />),
   getItem(<a href="/adminlogs">Admin Logs</a>, "sub5", <HistoryOutlined />),
   getItem(<a href="/" onClick={()=>logOut()}>Log-Out</a>, "sub6", <LogoutOutlined />),
 ];
