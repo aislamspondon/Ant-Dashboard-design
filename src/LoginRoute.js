@@ -4,7 +4,6 @@ import AdminLogs from "./Components/AdminLogs";
 import ApprovePendingShop from "./Components/ApprovePendingShop";
 import FindShop from "./Components/FindShop";
 import Home from "./Components/Home";
-import Matrix from "./Components/Matrix";
 import Login from "./LoginTab";
 // import ManageAdmin from "./Components/ManageAdmin";
 import AddProduct from "./Components/AddProduct";
@@ -131,19 +130,6 @@ export default function LoginRoute() {
                 ) : (<Login />)}
               </>
 
-            }
-          />
-          <Route
-            exact
-            path="/matrix"
-            element={
-              <>
-                {logged ? (
-                  <LayoutDashboard>
-                    <Matrix />
-                  </LayoutDashboard>
-                ) : (<Login />)}
-              </>
             }
           />
 

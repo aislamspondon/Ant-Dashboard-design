@@ -23,15 +23,9 @@ const columns = [
   },
   {
     title: "Comment & Review",
-    dataIndex: "function",
+    dataIndex: "content",
     key: "function",
-  },
-
-  {
-    title: "Reply or Delete",
-    key: "status",
-    dataIndex: "status",
-  },
+  }
 ];
 
 const data = [

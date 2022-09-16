@@ -49,7 +49,7 @@ export default function ApprovePendingShop() {
   const UpdateShop = async (e, shopId, status) => {
     const refresh_token = localStorage.getItem("refresh_token");
     if(status === "accept"){
-      const acceptShop = await axios.patch(`https://merchport.z1p.xyz/api/shops/${shopId}`, {
+      const acceptShop = await axios.patch(`https://merchport.z1p.xyz/api/shops/${shopId}/approval`, {
         "verified": true
       }, {
         headers: { Authorization: `${refresh_token}` }
@@ -66,8 +66,9 @@ export default function ApprovePendingShop() {
         "https://merchport.z1p.xyz/api/_shops/pending-approval"
       );
       const allShops = shops.data.result;
-      console.log("This is all", allShops);
       allShops.forEach((shop) => {
+      console.log("This is all", shop);
+
         shop["details"] = (
           <Button>
             <PendingShopDetails

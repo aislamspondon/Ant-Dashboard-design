@@ -8,7 +8,7 @@ import {
   SearchOutlined,
   ShopOutlined,
   UsergroupAddOutlined,
-  UserOutlined,
+  UserOutlined
 } from "@ant-design/icons";
 // import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 // import Login from "../LoginTab";
@@ -19,8 +19,9 @@ import {
 // import ManageAdmin from "./ManageAdmin";
 // import Products from "./Products";
 // import Users from "./Users";
+import { Avatar, Badge, Input, Layout, Menu, message, Popover } from "antd";
 import axios from "axios";
-import { Avatar, Badge, Form, Input, Layout, Menu, message } from "antd";
+import TableData from "./TableData/TableData";
 
 import { React, useState } from "react";
 
@@ -54,14 +55,41 @@ const items = [
     getItem(<a href="/findshop">Find Shop</a>, "2", <FileSearchOutlined />),
   ]),
   getItem(<a href="/products">Products</a>, "sub4", <UsergroupAddOutlined />),
-  getItem(<a href="/matrix">Matrix</a>, "sub4", <PicRightOutlined />),
   getItem(<a href="/adminlogs">Admin Logs</a>, "sub5", <HistoryOutlined />),
   getItem(<a href="/" onClick={()=>logOut()}>Log-Out</a>, "sub6", <LogoutOutlined />),
 ];
 
+const columns = [
+  
+  {
+    title: "Name",
+    dataIndex: "name",
+    key: "name",
+  },
+  {
+    title: "Description",
+    dataIndex: "description",
+    key: "description",
+  },
+  {
+    title: "Price",
+    dataIndex: "price",
+    key: "price",
+  },
+  {
+    title: "Created At",
+    dataIndex: "createdAt",
+    key: "createdAt",
+  },
+  
+];
+
+
+
+
 export default function Layout2({ children }) {
   const [collapsed, setCollapsed] = useState(false);
-  // const [search, setSearch] = useState();
+  const [search, setSearch] = useState();
   const onClick = (e) => {
     console.log("click", e);
   };
@@ -74,6 +102,7 @@ export default function Layout2({ children }) {
     if(searched.data.count === 0){
       message.error(`Search ${e} is not found`);
     }
+    setSearch(searched.data.result);
   }
   
   return (
@@ -81,7 +110,8 @@ export default function Layout2({ children }) {
       <Header className="header">
         <div className="brand-and-search">
           <div className="logo">Demo</div>
-          
+          <Popover title="Search" content={<TableData data={search} column={columns}/>} trigger="click">
+
           <Search
             style={{
               width: 300,
@@ -94,6 +124,7 @@ export default function Layout2({ children }) {
             prefix={<SearchOutlined />}
             allowClear
             />
+          </Popover>
         </div>
         <div
           style={{
