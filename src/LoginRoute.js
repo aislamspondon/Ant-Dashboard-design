@@ -1,4 +1,4 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import AdminLogs from "./Components/AdminLogs";
 import ApprovePendingShop from "./Components/ApprovePendingShop";
@@ -14,38 +14,38 @@ import Users from "./Components/Users";
 
 export default function LoginRoute() {
   const [logged] = useState(localStorage.getItem('refresh_token'));
- 
-  
- 
+
+
+
   return (
     <>
-   
+
       <Router>
         <Routes>
           <Route exact path="/" element={<Login />} />
-          
-          
-          <Route
-          exact
-          path="/home"
-          element={
-           <>
-               {logged ? ( <LayoutDashboard>  <Home />   </LayoutDashboard> ) : (<Login />)}
-               </>
-            }
-            />
-         
+
 
           <Route
             exact
             path="/home"
             element={
               <>
-              {logged? (
-              <LayoutDashboard>
-                <Home />
-              </LayoutDashboard>
-              ):(<Login />)}
+                {logged ? (<LayoutDashboard>  <Home />   </LayoutDashboard>) : (<Login />)}
+              </>
+            }
+          />
+
+
+          <Route
+            exact
+            path="/home"
+            element={
+              <>
+                {logged ? (
+                  <LayoutDashboard>
+                    <Home />
+                  </LayoutDashboard>
+                ) : (<Login />)}
               </>
             }
           />
@@ -54,13 +54,13 @@ export default function LoginRoute() {
             path="/users"
             element={
               <>
-              {logged? (
-              <LayoutDashboard>
-               <Users />
-              </LayoutDashboard>
-              ):(<Login />)}
+                {logged ? (
+                  <LayoutDashboard>
+                    <Users />
+                  </LayoutDashboard>
+                ) : (<Login />)}
               </>
-             
+
             }
           />
           <Route
@@ -68,13 +68,13 @@ export default function LoginRoute() {
             path="/pendingshop"
             element={
               <>
-              {logged? (
-              <LayoutDashboard>
-               <ApprovePendingShop />
-              </LayoutDashboard>
-              ):(<Login />)}
+                {logged ? (
+                  <LayoutDashboard>
+                    <ApprovePendingShop />
+                  </LayoutDashboard>
+                ) : (<Login />)}
               </>
-      
+
             }
           />
           <Route
@@ -82,13 +82,13 @@ export default function LoginRoute() {
             path="/findshop"
             element={
               <>
-              {logged? (
-              <LayoutDashboard>
-              <FindShop />
-              </LayoutDashboard>
-              ):(<Login />)}
+                {logged ? (
+                  <LayoutDashboard>
+                    <FindShop />
+                  </LayoutDashboard>
+                ) : (<Login />)}
               </>
-             
+
             }
           />
           <Route
@@ -96,13 +96,13 @@ export default function LoginRoute() {
             path="/addproduct"
             element={
               <>
-              {logged? (
-              <LayoutDashboard>
-              <AddProduct />
-              </LayoutDashboard>
-              ):(<Login />)}
+                {logged ? (
+                  <LayoutDashboard>
+                    <AddProduct />
+                  </LayoutDashboard>
+                ) : (<Login />)}
               </>
-           
+
             }
           />
           <Route
@@ -110,13 +110,13 @@ export default function LoginRoute() {
             path="/products"
             element={
               <>
-              {logged? (
-              <LayoutDashboard>
-               <Products />
-              </LayoutDashboard>
-              ):(<Login />)}
+                {logged ? (
+                  <LayoutDashboard>
+                    <Products />
+                  </LayoutDashboard>
+                ) : (<Login />)}
               </>
-            
+
             }
           />
           <Route
@@ -124,13 +124,13 @@ export default function LoginRoute() {
             path="/adminlogs"
             element={
               <>
-              {logged? (
-              <LayoutDashboard>
-                <AdminLogs />
-              </LayoutDashboard>
-              ):(<Login />)}
+                {logged ? (
+                  <LayoutDashboard>
+                    <AdminLogs />
+                  </LayoutDashboard>
+                ) : (<Login />)}
               </>
-           
+
             }
           />
           <Route
@@ -138,15 +138,15 @@ export default function LoginRoute() {
             path="/matrix"
             element={
               <>
-              {logged? (
-              <LayoutDashboard>
-              <Matrix />
-              </LayoutDashboard>
-              ):(<Login />)}
+                {logged ? (
+                  <LayoutDashboard>
+                    <Matrix />
+                  </LayoutDashboard>
+                ) : (<Login />)}
               </>
             }
           />
-          
+
         </Routes>
       </Router>
     </>

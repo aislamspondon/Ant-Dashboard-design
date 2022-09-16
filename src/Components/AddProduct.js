@@ -1,165 +1,39 @@
-import { FastBackwardOutlined, InboxOutlined } from "@ant-design/icons";
-import { Button, Form, Input, InputNumber, Upload } from "antd";
+
 import axios from "axios";
 import React, { useState } from "react";
-const layout = {
-  labelCol: {
-    span: 8,
-  },
-  wrapperCol: {
-    span: 16,
-  },
-};
-
-// const normFile = (e) => {
-//   console.log("Upload event:", e);
-
-//   if (Array.isArray(e)) {
-//     return e;
-//   }
-
-//   return e?.fileList;
-// };
-/* eslint-disable no-template-curly-in-string */
-
-const validateMessages = {
-  required: "${label} is required!",
-  types: {
-    email: "${label} is not a valid email!",
-    number: "${label} is not a valid number!",
-  },
-  number: {
-    range: "${label} must be between ${min} and ${max}",
-  },
-};
-/* eslint-enable no-template-curly-in-string */
+import { message } from "antd";
+import { ProductForm } from "./form/product"
 
 const AddProduct = () => {
-  const [fileHist, setFileHist] = useState(null);
- 
+  const [isLoading, setLoading] = useState(false)
 
+  const handleSubmit = async (values) => {
+    try {
+      setLoading(true)
+      const header = {
+        headers: { Authorization: "Bearer " + localStorage.getItem("access_token") }
+      }
 
-  const onFinish = async(values) => {
-    values.images = fileHist;
-    const category = values.categories;
-    values.categories = [category];
-    const refresh_token = localStorage.getItem("refresh_token");
-    console.log(refresh_token);
-    console.log(values);
-    const ProductsPush = await axios.post(`https://merchport.z1p.xyz/api/products`, values, {
-      headers: { Authorization: `${refresh_token}` }
-  })
-  if(ProductsPush.status === 201){
-    window.location.reload(false);
-    console.log(ProductsPush);
-  }
-  };
-
-  const normFile = (e) => {
-    const images = [];
-    if(Array.isArray(e.fileHist)) {
-
-      e.fileHist.forEach(each => {
-        images.push(each.uid);
-      });
+      const response = await axios.post(`https://merchport.z1p.xyz/api/products`, values, header)
+      if (response && response.status === 201) {
+        message.success("Product uploaded.")
+      }
+      setLoading(false)
+    } catch (error) {
+      if (error) {
+        setLoading(false)
+        message.error("Something going wrong.")
+      }
     }
-    images.push(e.fileHist);
-    setFileHist(e.fileList);
   };
 
   return (
     <>
       <div style={{ padding: "130px", paddingRight: "31%" }}>
-        <a href="/home">
-          <Button style={{ color: "#40A9FF" }}>
-            <FastBackwardOutlined />
-            Back Dashboard
-          </Button>
-        </a>
-        <h4
-          className="text-center "
-          style={{ color: "#40A9FF", fontSize: "30px", marginLeft: "30%" }}
-        >
-          <b>Add Product</b>
-        </h4>
-        <Form
-          {...layout}
-          name="nest-messages"
-          onFinish={onFinish}
-          validateMessages={validateMessages}
-        >
-          <Form.Item
-            label="Product Name"
-            name={"name"}
-            rules={[
-              {
-                required: true,
-              },
-            ]}
-          >
-            <Input placeholder="Enter Your Product Name..." />
-          </Form.Item>
-          <Form.Item
-            name={"categories"}
-            label="Category"
-            rules={[
-              {
-                type: "text",
-              },
-            ]}
-          >
-            <Input placeholder="Enter Your Category..." />
-          </Form.Item>
-          <Form.Item
-            name={"price"}
-            label="Price"
-            rules={[
-              {
-                type: "number",
-                min: 0,
-                max: 10000,
-              },
-            ]}
-          >
-            <InputNumber placeholder="Price" />
-          </Form.Item>
-
-          <Form.Item name={"description"} label="Description">
-            <Input.TextArea placeholder="Enter Product Description" />
-          </Form.Item>
-          <Form.Item label="Dragger">
-            <Form.Item
-              name="images"
-              valuePropName="fileList"
-              getValueFromEvent={normFile}
-              noStyle
-            >
-              <Upload.Dragger name="files">
-                <p className="ant-upload-drag-icon">
-                  <InboxOutlined />
-                </p>
-                <p className="ant-upload-text">
-                  Click or drag file to this area to upload
-                </p>
-                <p className="ant-upload-hint">
-                  Support for a single or bulk upload.
-                </p>
-              </Upload.Dragger>
-            </Form.Item>
-          </Form.Item>
-          <br />
-          <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 21 }}>
-            <a href="/dashboard">
-              <Button
-                type="primary"
-                htmlType="submit"
-                style={{ hight: "50px", wight: "20px" }}
-              >
-                Add Product
-              </Button>
-            </a>
-          </Form.Item>
-        </Form>
+        <ProductForm
+          loading={isLoading}
+          onSubmit={data => handleSubmit(data)}
+        />
       </div>
     </>
   );
