@@ -4,7 +4,7 @@ import React from "react";
 import EditOneProduct from "./EditOneProduct";
 
 const EditProduct = ({product}) => {
-  console.log(product);
+  //console.log(product);
   const confirm = (values) => {
     console.log(values)
   }

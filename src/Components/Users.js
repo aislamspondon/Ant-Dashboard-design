@@ -1,9 +1,8 @@
 import { StopOutlined } from "@ant-design/icons";
-import { Button, message, Typography } from "antd";
+import { Button, message, Table, Typography } from "antd";
 import axios from "axios";
 import { React, useEffect, useState } from "react";
 import UserDetail from "./ChildPages/UserDetail";
-import TableData from "./TableData/TableData";
 
 let { Title } = Typography;
 
@@ -118,16 +117,8 @@ export default function Users() {
       >
         Users
       </Title>
-        <TableData data={dataArray} column={columns} pagination={{
-          current: page,
-          pageSize: pageSize,
-          onChange: (page, pageSize) => {
-            setPage(page);
-            setPageSize(pageSize);
-          },
-        }}/>
-      {/* <Table
-        dataSource={data}
+      <Table
+        dataSource={dataArray}
         columns={columns}
         pagination={{
           current: page,
@@ -137,7 +128,7 @@ export default function Users() {
             setPageSize(pageSize);
           },
         }}
-      ></Table> */}
+      />
     </>
   );
 }

@@ -1,8 +1,7 @@
-import { Button, message, Typography } from "antd";
+import { Button, message, Table, Typography } from "antd";
 import axios from "axios";
 import { React, useEffect, useState } from "react";
 import PendingShopDetails from "./ChildPages/PendingShopDetails";
-import TableData from "./TableData/TableData";
 let { Title } = Typography;
 
 export default function ApprovePendingShop() {
@@ -48,7 +47,18 @@ export default function ApprovePendingShop() {
     },
   ];
   const UpdateShop = async (e, shopId, status) => {
-    message.success(shopId, "updated");
+    const refresh_token = localStorage.getItem("refresh_token");
+    if(status === "accept"){
+      const acceptShop = await axios.patch(`https://merchport.z1p.xyz/api/shops/${shopId}`, {
+        "verified": true
+      }, {
+        headers: { Authorization: `${refresh_token}` }
+      });
+      if(acceptShop.status === 200){
+        message.success(shopId, "updated");
+        getShops();
+      }
+    }
   };
   const getShops = async () => {
     if (typeof window !== undefined) {
@@ -110,7 +120,7 @@ export default function ApprovePendingShop() {
       >
         Pending Shops
       </Title>
-      {/* <Table
+      <Table
         dataSource={shops}
         columns={columsNew}
         pagination={{
@@ -121,19 +131,7 @@ export default function ApprovePendingShop() {
             setPageSize(pageSize);
           },
         }}
-      ></Table> */}
-      <TableData
-        data={shops}
-        columns={columsNew}
-        pagination={{
-          current: page,
-          pageSize: pageSize,
-          onChange: (page, pageSize) => {
-            setPage(page);
-            setPageSize(pageSize);
-          },
-        }}
-      />
+      ></Table>
     </>
   );
 }

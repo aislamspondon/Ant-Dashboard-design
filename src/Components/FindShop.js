@@ -11,6 +11,7 @@ export default function FindShop() {
   const [pageSize, setPageSize] = useState(10);
   const [searchText, setSearchText] = useState("");
   const [shops, setShops] = useState();
+  const [flag, setFlag] = useState(true);
   const handleChange = (e) => {
     setSearchText(e.target.value);
   };
@@ -50,20 +51,23 @@ export default function FindShop() {
 
   const getShops = async () => {
     if (typeof window !== undefined) {
-      const shops = await axios.get("https://merchport.z1p.xyz/api/shops");
-      const allShops = shops.data.result;
-      allShops.forEach((shop) => {
-        shop["details"] = (
-          <Button>
-            <ShopDetails
-              style={{ height: "20px", width: "20px" }}
-              shopDetailsList={shop}
-            />
-          </Button>
-        );
-      });
-
-      setShops(shops.data.result);
+      if(flag){
+        const shops = await axios.get("https://merchport.z1p.xyz/api/shops");
+        const allShops = shops.data.result;
+        allShops.forEach((shop) => {
+          shop["details"] = (
+            <Button>
+              <ShopDetails
+                style={{ height: "20px", width: "20px" }}
+                shopDetailsList={shop}
+              />
+            </Button>
+          );
+        });
+        
+        setShops(shops.data.result);
+        setFlag(false);
+      }
     }
   };
   useEffect(() => {

@@ -18,9 +18,9 @@ function UserDetail({ userDetailsList }) {
   };
   useEffect(() => {
     getUserInfo();
-  });
+  }, []);
 
-  console.log("This is ", userDetails);
+  console.log("This is userDetails", userDetails);
 
   function confirm(e) {
     console.log(e);

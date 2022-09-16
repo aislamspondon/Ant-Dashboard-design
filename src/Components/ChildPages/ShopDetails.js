@@ -19,7 +19,7 @@ export default function ShopDetails({ shopDetailsList }) {
   };
   useEffect(() => {
     getShopInfo();
-  });
+  },[]);
 
   console.log("This is ", shopDetails);
 

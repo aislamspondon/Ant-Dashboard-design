@@ -4,7 +4,7 @@ import { Avatar, Button, Card, Col, Row, Table, Typography } from "antd";
 import {
   DeleteOutlined,
   FileTextOutlined,
-  StarOutlined,
+  StarOutlined
 } from "@ant-design/icons";
 
 import face from "../../assets/images/face-1.jpg";
@@ -172,7 +172,7 @@ const data = [
 ];
 // project table start
 
-function TotalComment() {
+function TotalComment({comments}) {
   const onChange = (e) => console.log(`radio checked:${e.target.value}`);
 
   return (
@@ -188,7 +188,7 @@ function TotalComment() {
               <div className="table-responsive">
                 <Table
                   columns={columns}
-                  dataSource={data}
+                  dataSource={comments}
                   pagination={false}
                   className="ant-border-space"
                 />

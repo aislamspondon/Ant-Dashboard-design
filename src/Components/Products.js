@@ -5,13 +5,12 @@ import {
   Image,
   Input,
   message,
-  Popover,
-  Typography
+  Popover, Table, Typography
 } from "antd";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import Comment from "./ChildPages/Comment";
 import EditProduct from "./ChildPages/EditProduct";
-import TableData from "./TableData/TableData";
 
 let { Title } = Typography;
 
@@ -40,6 +39,11 @@ const columns = [
     title: "Created At",
     dataIndex: "createdAt",
     key: "createdAt",
+  },
+  {
+    title: "Comments",
+    dataIndex: "comments",
+    key: "comments",
   },
   {
     title: "Edit",
@@ -81,7 +85,7 @@ export default function Products() {
     if (typeof windows !== undefined) {
       const tempArray = [];
       const products = await axios.get(
-        "https://merchport.z1p.xyz/api/_products"
+        "https://merchport.z1p.xyz/api/_products?take=30"
       );
       console.log(products.data.result);
       const allProducts = products.data.result;
@@ -109,6 +113,9 @@ export default function Products() {
             </Button>
           </Popover>
         );
+        product["comments"] = (
+          <Comment prodId = {product.id}/>
+        )
       });
 
       setProduct(allProducts);
@@ -121,36 +128,6 @@ export default function Products() {
     getProducts();
   }, []);
 
-  const getUsers = async () => {
-    if (typeof windows !== undefined) {
-      const tempArray = [];
-      const products = await axios.get(
-        "https://merchport.z1p.xyz/api/_products"
-      );
-      console.log(products.data.result);
-      const allProducts = products.data.result;
-      allProducts.forEach((product) => {
-        product["delete"] = (
-          <Button type="danger">
-            <DeleteOutlined />
-          </Button>
-        );
-        product["edit"] = (
-          <Popover placement="bottom" trigger="click">
-            <Button>
-              <EditProduct />
-            </Button>
-          </Popover>
-        );
-      });
-
-      setProduct(allProducts);
-    }
-  };
-
-  useEffect(() => {
-    getUsers();
-  }, []);
 
   const start = () => {
     setLoading(true); // ajax request after empty completing
@@ -236,30 +213,20 @@ export default function Products() {
           {hasSelected ? `Selected ${selectedRowKeys.length} items` : ""}
         </span>
       </div>
-      {/* <Table
+      {product? (
+
+      <Table
         rowSelection={rowSelection}
         columns={columns}
-        dataSource={data.filter((val) => {
+        dataSource={product.length> 0 ? product.filter((val) => {
           if (searchText === "") {
             return val;
           } else if (
-            val.p_name.toLowerCase().includes(searchText.toLowerCase())
+            val.name.toLowerCase().includes(searchText.toLowerCase())
           ) {
             return val;
           }
-        })}
-        pagination={{
-          current: page,
-          pageSize: pageSize,
-          onChange: (page, pageSize) => {
-            setPage(page);
-            setPageSize(pageSize);
-          },
-        }}
-      /> */}
-      <TableData
-        data={product}
-        column={columns}
+        }): product}
         pagination={{
           current: page,
           pageSize: pageSize,
@@ -269,6 +236,8 @@ export default function Products() {
           },
         }}
       />
+      ): null}
+      
     </>
   );
 }
